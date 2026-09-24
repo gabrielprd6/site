@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" width="1600" height="560" role="img" aria-label="Composition abstraite : arches imbriquées et lignes de flux">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#F4F4F2"/>
+      <stop offset="55%"  stop-color="#E4E4E1"/>
+      <stop offset="100%" stop-color="#CFCFCB"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0E0E0E" stop-opacity=".10"/>
+      <stop offset="100%" stop-color="#0E0E0E" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="38%" r="46%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="frame"><rect width="1600" height="560"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1600" height="560" fill="url(#ground)"/>
+    <rect width="1600" height="560" fill="url(#glow)"/>
+
+    <!-- Trame de fond -->
+    <g stroke="#0E0E0E" stroke-opacity=".07" stroke-width="1">
+      <path d="M0 140h1600M0 280h1600M0 420h1600"/>
+      <path d="M200 0v560M400 0v560M600 0v560M800 0v560M1000 0v560M1200 0v560M1400 0v560"/>
+    </g>
+
+    <!-- Arches imbriquées : la profondeur vient de l'échelle, pas d'une ombre -->
+    <g fill="none" stroke="#0E0E0E">
+      <path d="M760 560V300a260 260 0 0 1 520 0v260" stroke-opacity=".16" stroke-width="1.5"/>
+      <path d="M840 560V320a180 180 0 0 1 360 0v240" stroke-opacity=".22" stroke-width="1.5"/>
+      <path d="M920 560V342a100 100 0 0 1 200 0v218" stroke-opacity=".30" stroke-width="1.5"/>
+    </g>
+
+    <!-- Arche pleine, unique accent de marque -->
+    <path d="M985 560V366a35 35 0 0 1 70 0v194" fill="#6D28D9" fill-opacity=".9"/>
+
+    <!-- Lignes de flux qui convergent vers l'arche -->
+    <g fill="none" stroke="#0E0E0E" stroke-opacity=".28" stroke-width="1.5">
+      <path d="M0 470h300a40 40 0 0 0 40-40v-60a40 40 0 0 1 40-40h280"/>
+      <path d="M0 386h180a40 40 0 0 1 40 40v44a40 40 0 0 0 40 40h400"/>
+      <path d="M0 250h420a40 40 0 0 1 40 40v180"/>
+    </g>
+    <g fill="#0E0E0E" fill-opacity=".55">
+      <circle cx="340" cy="330" r="4"/>
+      <circle cx="220" cy="470" r="4"/>
+      <circle cx="460" cy="290" r="4"/>
+    </g>
+
+    <rect width="620" height="560" fill="url(#fade)"/>
+    <rect width="1600" height="560" filter="url(#grain)" opacity=".055"/>
+  </g>
+</svg>

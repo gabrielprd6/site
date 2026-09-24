@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Emplacement réservé au portrait du fondateur">
+  <defs>
+    <linearGradient id="g4" x1=".1" y1="0" x2=".9" y2="1">
+      <stop offset="0%"   stop-color="#F2F2F0"/>
+      <stop offset="60%"  stop-color="#DEDEDA"/>
+      <stop offset="100%" stop-color="#C6C6C1"/>
+    </linearGradient>
+    <radialGradient id="key" cx="42%" cy="34%" r="52%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="n4" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="c4"><rect width="800" height="1000"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#c4)">
+    <rect width="800" height="1000" fill="url(#g4)"/>
+    <rect width="800" height="1000" fill="url(#key)"/>
+
+    <!-- Silhouette floue : lit comme un portrait sans prétendre en être un -->
+    <g filter="url(#soft)" fill="#0E0E0E" fill-opacity=".2">
+      <circle cx="400" cy="430" r="132"/>
+      <path d="M400 596c-146 0-262 104-262 232v172H662V828c0-128-116-232-262-232Z"/>
+    </g>
+
+    <!-- Repères d'un cadrage photo -->
+    <g stroke="#0E0E0E" stroke-opacity=".16" stroke-width="1.5" fill="none">
+      <path d="M64 64h72M64 64v72M736 64h-72M736 64v72M64 936h72M64 936v-72M736 936h-72M736 936v-72"/>
+    </g>
+    <g stroke="#0E0E0E" stroke-opacity=".07" stroke-width="1">
+      <path d="M0 333h800M0 667h800M267 0v1000M533 0v1000"/>
+    </g>
+
+    <rect width="800" height="1000" filter="url(#n4)" opacity=".05"/>
+  </g>
+</svg>
