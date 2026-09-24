@@ -612,40 +612,6 @@
     });
   })();
 
-  /* ---------------------------------------------------------------- Thème */
-  (function theme() {
-    var toggle = $('#theme-toggle');
-    if (!toggle) return;
-
-    function sync() {
-      var dark = root.dataset.theme === 'dark';
-      toggle.setAttribute('aria-pressed', String(dark));
-      toggle.setAttribute('aria-label', dark ? 'Basculer en mode clair' : 'Basculer en mode sombre');
-    }
-
-    toggle.addEventListener('click', function () {
-      var dark = root.dataset.theme === 'dark';
-      root.dataset.theme = dark ? 'light' : 'dark';
-      try { localStorage.setItem('croisia-theme', root.dataset.theme); } catch (e) {}
-      sync();
-      window.dispatchEvent(new CustomEvent('croisia:theme'));  // l'écosystème se re-colore
-    });
-
-    // Suit l'OS tant que l'utilisateur n'a pas choisi explicitement.
-    var osQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    var onOsChange = function (e) {
-      var stored = null;
-      try { stored = localStorage.getItem('croisia-theme'); } catch (err) {}
-      if (stored) return;
-      root.dataset.theme = e.matches ? 'dark' : 'light';
-      sync();
-    };
-    if (osQuery.addEventListener) osQuery.addEventListener('change', onOsChange);
-    else if (osQuery.addListener) osQuery.addListener(onOsChange);
-
-    sync();
-  })();
-
   /* ------------------------------------------ Header : état + progression */
   (function header() {
     var header = $('#header');
