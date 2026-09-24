@@ -48,6 +48,8 @@
 
   /* Typo */
   --display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --brand:   "Fraunces", Georgia, "Times New Roman", serif;   /* logotype Croisia */
+  --brand-ink: #2A2119;
   --sans:    "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   color-scheme: light;
@@ -276,15 +278,24 @@ ul, ol { list-style: none; padding: 0; }
 .header.is-scrolled .header__inner { height: 62px; }
 
 .logo {
-  display: inline-flex; align-items: center; gap: .6rem;
+  display: inline-flex; align-items: center; gap: .7rem;
   min-height: 44px;
-  text-decoration: none; color: var(--ink);
-  font-family: var(--display);
-  font-weight: 400; font-size: 1.5rem;
+  text-decoration: none; color: var(--brand-ink);
+  font-family: var(--brand);
+  font-weight: 600; font-size: 1.2rem;
   margin-right: auto;
 }
-.logo__mark { width: 22px; height: 22px; flex: none; }
-.logo__word { line-height: 1; }
+/* Symbole : pyramide de losanges (carte de visite) */
+.logo__mark, .loader__mark {
+  flex: none; fill: currentColor; stroke: currentColor;
+  stroke-width: 2; stroke-linejoin: round; overflow: visible;
+}
+.logo__mark { width: 38px; height: 24px; }
+/* À petite taille, on remonte un peu les opacités pour garder les 4 rangées lisibles */
+.logo__mark g:nth-of-type(1) { opacity: .22; }
+.logo__mark g:nth-of-type(2) { opacity: .4; }
+.logo__mark g:nth-of-type(3) { opacity: .66; }
+.logo__word { line-height: 1; letter-spacing: .22em; margin-right: -.22em; }
 
 .nav__list { display: flex; align-items: center; gap: .15rem; }
 .nav__list a {
@@ -848,10 +859,11 @@ ul, ol { list-style: none; padding: 0; }
 /* Wordmark surdimensionné, coupé par l'overflow du footer */
 .footer__word {
   display: block;
-  font-family: var(--display);
-  font-size: clamp(4rem, 20vw, 17rem);
+  font-family: var(--brand); font-weight: 600;
+  font-size: clamp(3rem, 14vw, 12rem);
   line-height: .8;
-  letter-spacing: -.04em;
+  letter-spacing: .12em;
+  white-space: nowrap;
   color: var(--ink);
   text-decoration: none;
   padding-block: clamp(1rem, 3vw, 2rem);
@@ -1081,11 +1093,23 @@ ul, ol { list-style: none; padding: 0; }
 .loader.is-done { transform: translateY(-100%); }
 .loader[hidden] { display: none; }
 .loader__inner { display: grid; justify-items: center; gap: 1.25rem; }
+.loader__mark { width: clamp(110px, 16vw, 170px); height: auto; color: var(--brand-ink); }
 .loader__word {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(2.75rem, 8vw, 5rem);
-  letter-spacing: -.03em; line-height: 1;
-  color: var(--ink);
+  font-family: var(--brand); font-weight: 600;
+  font-size: clamp(2.25rem, 6.5vw, 4.25rem);
+  letter-spacing: .22em; margin-right: -.22em; line-height: 1;
+  color: var(--brand-ink);
+}
+.loader__tag {
+  font-family: var(--sans); font-weight: 500;
+  font-size: clamp(.7rem, 1.6vw, .875rem);
+  letter-spacing: .3em; margin-right: -.3em; text-transform: uppercase;
+  color: var(--ink-2);
+  text-align: center;
+}
+.loader__tag::before {
+  content: ""; display: block; width: 48px; height: 2px;
+  margin: 0 auto 1rem; background: var(--brand-ink);
 }
 .loader__pct {
   font-family: var(--sans); font-variant-numeric: tabular-nums;

@@ -14,10 +14,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=13">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css?v=14">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 5 27 27H5Z' fill='none' stroke='%230E0E0E' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-6 10 112 70'%3E%3Cg fill='%232A2119' stroke='%232A2119' stroke-width='2' stroke-linejoin='round'%3E%3Cg opacity='0.25'%3E%3Cpolygon points='8,54 20,66 8,78 -4,66'/%3E%3Cpolygon points='36,54 48,66 36,78 24,66'/%3E%3Cpolygon points='64,54 76,66 64,78 52,66'/%3E%3Cpolygon points='92,54 104,66 92,78 80,66'/%3E%3C/g%3E%3Cg opacity='0.45'%3E%3Cpolygon points='22,40 34,52 22,64 10,52'/%3E%3Cpolygon points='50,40 62,52 50,64 38,52'/%3E%3Cpolygon points='78,40 90,52 78,64 66,52'/%3E%3C/g%3E%3Cg opacity='0.7'%3E%3Cpolygon points='36,26 48,38 36,50 24,38'/%3E%3Cpolygon points='64,26 76,38 64,50 52,38'/%3E%3C/g%3E%3Cg opacity='1'%3E%3Cpolygon points='50,12 62,24 50,36 38,24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 
 <script>
   // Avant le premier rendu : évite le flash de contenu masqué.
@@ -40,7 +40,14 @@
 <!-- ============================================================ Loader d'intro -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__inner">
-    <span class="loader__word">Croisia</span>
+    <svg class="loader__mark" viewBox="-6 10 112 70" aria-hidden="true" focusable="false">
+  <g opacity="0.1"><polygon points="8,54 20,66 8,78 -4,66"/><polygon points="36,54 48,66 36,78 24,66"/><polygon points="64,54 76,66 64,78 52,66"/><polygon points="92,54 104,66 92,78 80,66"/></g>
+  <g opacity="0.26"><polygon points="22,40 34,52 22,64 10,52"/><polygon points="50,40 62,52 50,64 38,52"/><polygon points="78,40 90,52 78,64 66,52"/></g>
+  <g opacity="0.58"><polygon points="36,26 48,38 36,50 24,38"/><polygon points="64,26 76,38 64,50 52,38"/></g>
+  <polygon points="50,12 62,24 50,36 38,24"/>
+</svg>
+    <span class="loader__word">CROISIA</span>
+    <span class="loader__tag">Conseil &amp; développement IA</span>
     <span class="loader__pct"><span id="loader-num">0</span> %</span>
     <span class="loader__bar" aria-hidden="true"><i id="loader-bar"></i></span>
   </div>
@@ -50,11 +57,13 @@
 <header class="header" id="header">
   <div class="shell header__inner">
     <a class="logo" href="#top" aria-label="Croisia, retour en haut de page">
-      <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-        <path d="M16 4.5 28.5 27.5H3.5Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-        <path d="M11 22.5h10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-      </svg>
-      <span class="logo__word">Croisia</span>
+      <svg class="logo__mark" viewBox="-6 10 112 70" aria-hidden="true" focusable="false">
+  <g opacity="0.1"><polygon points="8,54 20,66 8,78 -4,66"/><polygon points="36,54 48,66 36,78 24,66"/><polygon points="64,54 76,66 64,78 52,66"/><polygon points="92,54 104,66 92,78 80,66"/></g>
+  <g opacity="0.26"><polygon points="22,40 34,52 22,64 10,52"/><polygon points="50,40 62,52 50,64 38,52"/><polygon points="78,40 90,52 78,64 66,52"/></g>
+  <g opacity="0.58"><polygon points="36,26 48,38 36,50 24,38"/><polygon points="64,26 76,38 64,50 52,38"/></g>
+  <polygon points="50,12 62,24 50,36 38,24"/>
+</svg>
+      <span class="logo__word">CROISIA</span>
     </a>
 
     <nav class="nav" id="nav" aria-label="Navigation principale">
@@ -692,7 +701,7 @@
     </div>
 
     <a class="footer__word" href="#top" aria-label="Croisia, retour en haut de page">
-      <span aria-hidden="true">Croisia</span>
+      <span aria-hidden="true">CROISIA</span>
     </a>
 
     <div class="footer__legal">
@@ -705,12 +714,12 @@
   </div>
 </footer>
 
-<script src="assets/js/intro.js?v=13" defer></script>
+<script src="assets/js/intro.js?v=14" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
-<script src="assets/js/main.js?v=13" defer></script>
-<script src="assets/js/motion.js?v=13" defer></script>
-<script src="assets/js/ecosystem.js?v=13" defer></script>
+<script src="assets/js/main.js?v=14" defer></script>
+<script src="assets/js/motion.js?v=14" defer></script>
+<script src="assets/js/ecosystem.js?v=14" defer></script>
 </body>
 </html>
