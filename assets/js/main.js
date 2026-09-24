@@ -892,7 +892,7 @@
         .catch(function () {
           if (status) {
             status.textContent =
-              'L’envoi a échoué. Écrivez-moi directement à contact@croisia.fr, je vous réponds sous 24 h.';
+              'L’envoi a échoué. Écrivez-moi directement à contact@croisia.com, je vous réponds sous 24 h.';
           }
         })
         .then(function () {
