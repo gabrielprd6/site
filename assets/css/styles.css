@@ -61,6 +61,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;          /* rien ne doit élargir la page sur téléphone */
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 16px);
 }
@@ -74,6 +75,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 body.is-locked { overflow: hidden; }
 
@@ -1204,4 +1206,25 @@ body.is-loading { overflow: hidden; }
   .flux-link { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
   .flux__cap:not(.flux__cap--last) { display: none; }
   .flux__cap--last { position: static; }
+}
+
+
+/* ============================================================ Téléphone */
+.br-mobile { display: none; }
+@media (max-width: 720px) {
+  /* Les apparitions latérales décalaient le contenu hors de l'écran :
+     sur téléphone, tout arrive par le bas. */
+  .js-anim [data-reveal="left"],
+  .js-anim [data-reveal="right"] { transform: translate3d(0, 40px, 0); }
+  .js-anim [data-reveal="up"]    { transform: translate3d(0, 40px, 0); }
+
+  /* Logo plus compact pour laisser la place au bouton menu */
+  .logo { gap: .55rem; font-size: 1.05rem; }
+  .logo__mark { width: 32px; height: 20px; }
+  .logo__word { letter-spacing: .18em; margin-right: -.18em; }
+
+  /* La phrase qui change de mot passe sur sa propre ligne : plus de coupure */
+  .br-mobile { display: inline; }
+
+  .footer__word { font-size: 13vw; letter-spacing: .08em; }
 }

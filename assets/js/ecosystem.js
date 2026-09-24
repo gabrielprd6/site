@@ -256,7 +256,10 @@
     for (var lj = 0; lj < labeled.length; lj++) {
       var pi = labeled[lj], p2 = P[pi], word = nodes[pi].tool;
       var tw = ctx.measureText(word).width;
-      var bx = p2.sx + 6, by = p2.sy - 6, bw = tw + 6, bh = 13;
+      // Près du bord droit (téléphone), l'étiquette passe à gauche du point
+      var flip = p2.sx + 6 + tw > W - 4;
+      var bx = flip ? p2.sx - 6 - tw - 6 : p2.sx + 6, by = p2.sy - 6, bw = tw + 6, bh = 13;
+      if (bx < 2) continue;
       var ok = true;
       for (var bk = 0; bk < boxes.length; bk++) {
         var d = boxes[bk];
@@ -265,20 +268,21 @@
       if (!ok) continue;
       boxes.push({ x: bx, y: by, w: bw, h: bh });
       ctx.fillStyle = rgba(FG, Math.min(0.95, (p2.z - 0.06) * 1.15));
-      ctx.fillText(word, p2.sx + 6, p2.sy);
+      ctx.textAlign = flip ? 'right' : 'left';
+      ctx.fillText(word, flip ? p2.sx - 6 : p2.sx + 6, p2.sy);
     }
 
-    // Cœur : point + triangle Croisia
-    ctx.fillStyle = rgba(FG, 0.95);
-    ctx.beginPath(); ctx.arc(cx, cy, 3.2 + energy * 1.5, 0, Math.PI * 2); ctx.fill();
-    var tr = coreR * 0.5;
-    ctx.strokeStyle = rgba(dark ? [255, 255, 255] : ACC, 0.9);
-    ctx.lineWidth = 1.6; ctx.lineJoin = 'round';
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - tr);
-    ctx.lineTo(cx + tr * 0.9, cy + tr * 0.7);
-    ctx.lineTo(cx - tr * 0.9, cy + tr * 0.7);
-    ctx.closePath(); ctx.stroke();
+    // Cœur : le symbole Croisia (pyramide de losanges)
+    ctx.textAlign = 'left';
+    var LOGO = [[50,24,1],[36,38,.62],[64,38,.62],[22,52,.36],[50,52,.36],[78,52,.36],[8,66,.18],[36,66,.18],[64,66,.18],[92,66,.18]];
+    var ls = coreR * 0.62 / 44, lc = [42, 33, 25];   // #2A2119
+    for (var lg = 0; lg < LOGO.length; lg++) {
+      var gx = cx + (LOGO[lg][0] - 50) * ls, gy = cy + (LOGO[lg][1] - 45) * ls, gh = 11 * ls;
+      ctx.fillStyle = rgba(dark ? [255, 255, 255] : lc, LOGO[lg][2] * 0.95);
+      ctx.beginPath();
+      ctx.moveTo(gx, gy - gh); ctx.lineTo(gx + gh, gy); ctx.lineTo(gx, gy + gh); ctx.lineTo(gx - gh, gy);
+      ctx.closePath(); ctx.fill();
+    }
 
     // ---- Fil doré (sombre) / ambre (clair) : l'automatisation qui circule --
     var want = energy > 0.55 ? 2 : 1;
