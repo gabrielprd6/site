@@ -254,7 +254,7 @@
       start: 'top 88%',
       once: true,
       onEnter: function (batch) {
-        gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.08 });
+        gsap.to(batch, { opacity: 1, x: 0, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.08 });
       }
     });
   }
