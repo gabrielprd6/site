@@ -1141,6 +1141,7 @@ body.is-loading { overflow: hidden; }
   gap: clamp(1rem, 3vw, 2rem);
   padding: calc(var(--header-h) + 2rem) 0 3rem;
   overflow: hidden;
+  contain: layout paint;
 }
 .flux__head { text-align: center; }
 .flux__head .sec-title { margin-bottom: 0; }
@@ -1154,6 +1155,8 @@ body.is-loading { overflow: hidden; }
 .flux__canvas {
   display: block; width: 100%;
   height: min(70vh, 660px);
+  transform: translateZ(0);      /* calque GPU propre : le canvas ne repeint pas la page */
+  will-change: transform;
   touch-action: pan-y;           /* le scroll vertical reste au doigt sur mobile */
 }
 .flux__fallback { text-align: center; color: var(--ink-2); max-width: 40rem; margin-inline: auto; }

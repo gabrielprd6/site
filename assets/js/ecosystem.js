@@ -36,7 +36,7 @@
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
   function mix(a, b, t) { return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
 
-  var DPR = Math.min(window.devicePixelRatio || 1, 1.5);   // plafonné : moins de pixels à composer au scroll
+  var DPR = Math.min(window.devicePixelRatio || 1, 1.25);   // plafonné : moins de pixels à composer au scroll
   var W = 0, H = 0, cx = 0, cy = 0, R = 0;
 
   function resize() {
@@ -151,12 +151,18 @@
     sp.to = opts[Math.floor(Math.random() * Math.min(opts.length, 3))];
   }
 
+  // Position de la section mise en cache (recalculée au resize) : on évite un
+  // getBoundingClientRect() — donc un reflow forcé — à chaque image.
+  var secTop = 0, secTotal = 0;
+  function measureSection() {
+    if (!section) return;
+    secTop = section.getBoundingClientRect().top + (window.pageYOffset || 0);
+    secTotal = section.offsetHeight - window.innerHeight;
+  }
   function scrollProgress() {
-    if (!section) return 0;
-    var r = section.getBoundingClientRect();
-    var total = section.offsetHeight - window.innerHeight;
-    if (total <= 0) return 0;
-    return Math.max(0, Math.min(1, (-r.top) / total));
+    if (!section || secTotal <= 0) return 0;
+    var y = window.pageYOffset || 0;
+    return Math.max(0, Math.min(1, (y - secTop) / secTotal));
   }
 
   function project(n) {
@@ -175,6 +181,7 @@
     };
   }
 
+  var TW = {};
   function draw() {
     if (!W || !H) return;
     ctx.clearRect(0, 0, W, H);
@@ -218,14 +225,22 @@
       }
     }
 
-    // Mailles fines entre nœuds voisins
+    // Mailles fines entre nœuds voisins : regroupées en 5 paliers de profondeur
+    // (un seul tracé par palier au lieu d'un par lien → bien moins coûteux).
+    var NB = 5, bk0 = [[], [], [], [], []];
     for (var l = 0; l < links.length; l++) {
       var pa = P[links[l][0]], pb = P[links[l][1]];
-      var depth = ((pa.z + pb.z) / 2 + 1) / 2;      // 0 arrière, 1 avant
-      var alpha = (0.05 + depth * 0.22) * (0.6 + energy * 0.8);
-      ctx.strokeStyle = rgba(lineCol, alpha);
-      ctx.lineWidth = 0.6 + depth * 0.7;
-      ctx.beginPath(); ctx.moveTo(pa.sx, pa.sy); ctx.lineTo(pb.sx, pb.sy); ctx.stroke();
+      var dd = ((pa.z + pb.z) / 2 + 1) / 2;
+      bk0[Math.min(NB - 1, (dd * NB) | 0)].push(pa.sx, pa.sy, pb.sx, pb.sy);
+    }
+    for (var bi = 0; bi < NB; bi++) {
+      var seg0 = bk0[bi]; if (!seg0.length) continue;
+      var dm = (bi + 0.5) / NB;
+      ctx.strokeStyle = rgba(lineCol, (0.05 + dm * 0.22) * (0.6 + energy * 0.8));
+      ctx.lineWidth = 0.6 + dm * 0.7;
+      ctx.beginPath();
+      for (var sg = 0; sg < seg0.length; sg += 4) { ctx.moveTo(seg0[sg], seg0[sg + 1]); ctx.lineTo(seg0[sg + 2], seg0[sg + 3]); }
+      ctx.stroke();
     }
 
     // Nœuds (triés arrière → avant pour un rendu correct)
@@ -257,7 +272,7 @@
     var boxes = [];
     for (var lj = 0; lj < labeled.length; lj++) {
       var pi = labeled[lj], p2 = P[pi], word = nodes[pi].tool;
-      var tw = ctx.measureText(word).width;
+      var tw = TW[word] || (TW[word] = ctx.measureText(word).width);
       // Près du bord droit (téléphone), l'étiquette passe à gauche du point
       var flip = p2.sx + 6 + tw > W - 4;
       var bx = flip ? p2.sx - 6 - tw - 6 : p2.sx + 6, by = p2.sy - 6, bw = tw + 6, bh = 13;
@@ -344,11 +359,13 @@
     rotY += dt * (0.14 + energy * 0.55);   // tourne toujours sur elle-même
     rotX += dt * 0.03;
 
-    draw();
+    // Pendant le scroll : le réseau continue de tourner mais n'est redessiné
+    // qu'une image sur deux (30 i/s) → le scroll garde la priorité, sans arrêt net.
+    if (!(scrollBusy && (skip = !skip))) draw();
     raf = window.requestAnimationFrame(tick);
   }
 
-  var raf = null, running = false;
+  var raf = null, running = false, skip = false, scrollBusy = false, sbTO = null;
   function start() { if (running) return; running = true; tPrev = 0; raf = window.requestAnimationFrame(tick); }
   function stop()  { running = false; if (raf) window.cancelAnimationFrame(raf); raf = null; }
 
@@ -363,6 +380,12 @@
       tiltTgt = -ny * 0.4;
     }, { passive: true });
 
+    window.addEventListener('scroll', function () {
+      scrollBusy = true;
+      if (sbTO) window.clearTimeout(sbTO);
+      sbTO = window.setTimeout(function () { scrollBusy = false; }, 120);
+    }, { passive: true });
+
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) stop(); else if (onScreen) start();
     });
@@ -373,7 +396,7 @@
   function boot() {
     if (booted) return;
     booted = true;
-    resize();
+    resize(); measureSection();
     if (reduce) { draw(); return; }   // une image fixe, pas de boucle
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
@@ -386,7 +409,7 @@
   var rzTimer = null;
   window.addEventListener('resize', function () {
     window.clearTimeout(rzTimer);
-    rzTimer = window.setTimeout(function () { resize(); if (reduce) draw(); }, 200);
+    rzTimer = window.setTimeout(function () { resize(); measureSection(); if (reduce) draw(); }, 200);
   }, { passive: true });
 
   // Changement de thème clair/sombre : on redessine tout de suite (utile quand
@@ -396,6 +419,7 @@
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(boot);
     window.setTimeout(boot, 1200);
+    window.addEventListener('load', function () { window.setTimeout(measureSection, 300); });
   } else {
     boot();
   }
