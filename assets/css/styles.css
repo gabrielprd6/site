@@ -1300,3 +1300,18 @@ body.is-loading { overflow: hidden; }
   .feature__visual { aspect-ratio: 16 / 10; }
   .feature__visual img { height: 100%; object-fit: cover; }
 }
+
+/* =====================================================================
+   Écrans peu hauts (portables, fenêtre réduite, zoom Windows 125–150 %)
+   : le hero et la scène « principe » tiennent dans la hauteur visible.
+   ===================================================================== */
+@media (max-height: 800px) and (min-width: 1025px) {
+  :root { --header-h: 64px; }
+  .hero { padding-top: calc(var(--header-h) + clamp(1.75rem, 5vh, 3.5rem)); padding-bottom: clamp(2rem, 5vh, 3.5rem); }
+  .hero__title { font-size: clamp(2.5rem, 1rem + 11vh, 5.5rem); margin-bottom: clamp(1.25rem, 4vh, 2.5rem); }
+  .hero__eyebrow { margin-bottom: clamp(1rem, 3vh, 2rem); }
+  .section { padding-block: clamp(3rem, 8vh, 5rem); }
+  .flux__sticky { padding: calc(var(--header-h) + 1rem) 0 1.25rem; gap: .75rem; }
+  .flux__canvas { height: max(260px, calc(100svh - var(--header-h) - 15rem)); }
+  .flux__head .sec-title { font-size: clamp(1.75rem, 1rem + 3.5vh, 2.6rem); }
+}
