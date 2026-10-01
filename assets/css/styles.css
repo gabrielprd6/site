@@ -1238,9 +1238,12 @@ body.is-loading { overflow: hidden; }
   .flux__sticky {
     position: static; min-height: 0; overflow: visible;
     display: block;
-    padding: clamp(3.5rem, 9vw, 5.5rem) 0;
+    /* Haut réduit : la section précédente a déjà sa marge basse,
+       même fond → sinon un grand vide entre les deux. */
+    padding: .75rem 0 clamp(3.5rem, 9vw, 5.5rem);
   }
   .flux__stage { display: none; }
+  .section:has(+ .flux) { padding-bottom: 2rem; }
   .flux__head { margin-bottom: clamp(1.75rem, 5vw, 2.75rem); }
 
   .flux__captions {
