@@ -887,6 +887,11 @@
       })
         .then(function (res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json().catch(function () { return {}; });
+        })
+        .then(function (data) {
+          // FormSubmit répond 200 même en cas de refus : on lit `success`.
+          if (data && String(data.success) === 'false') throw new Error(data.message || 'refusé');
           showSuccess();
         })
         .catch(function () {
