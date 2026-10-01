@@ -148,6 +148,8 @@
     if (!flux) return;
     var caps = $$('.flux__cap', flux);
     if (!caps.length) return;
+    // Téléphone & tablette : légendes affichées en cartes statiques (CSS).
+    if (window.matchMedia('(max-width: 1024px), (hover: none) and (pointer: coarse)').matches) return;
 
     gsap.set(caps, { opacity: 0 });
     gsap.set(caps[0], { opacity: 1 });

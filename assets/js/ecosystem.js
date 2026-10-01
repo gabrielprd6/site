@@ -14,6 +14,9 @@
 
   var canvas = document.getElementById('eco-canvas');
   if (!canvas) return;
+  // Téléphone & tablette : pas de réseau interactif (section statique en CSS).
+  var SMALL = '(max-width: 1024px), (hover: none) and (pointer: coarse)';
+  if (window.matchMedia(SMALL).matches) return;
   var ctx = canvas.getContext('2d');
   if (!ctx) return;
 
