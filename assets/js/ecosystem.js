@@ -124,7 +124,6 @@
   var energy = 0, energyTgt = 0;
   var zoom = 1, zoomTgt = 1;
   var tPrev = 0, clock = 0, lastDt = 0;
-  var scrolling = false, scrollTO = null;   // on gèle le rendu pendant le scroll
 
   /* ---- Fil doré : une étincelle qui court d'un sommet à l'autre ---------- */
   var GOLD = [240, 200, 130];
@@ -330,9 +329,6 @@
   function tick(ts) {
     if (!running) return;
     if (!tPrev) tPrev = ts;
-    // Pendant que l'utilisateur scrolle, on ne dessine rien : le scroll garde
-    // toutes les ressources → fluide. La sphère reprend dès qu'on s'arrête.
-    if (scrolling) { tPrev = ts; raf = window.requestAnimationFrame(tick); return; }
     var dt = Math.min(0.05, (ts - tPrev) / 1000); tPrev = ts; clock += dt; lastDt = dt;
 
     energyTgt = scrollProgress();
@@ -371,12 +367,6 @@
       if (document.hidden) stop(); else if (onScreen) start();
     });
 
-    // Gèle le rendu du canvas tant que le scroll bouge (reprise à l'arrêt).
-    window.addEventListener('scroll', function () {
-      scrolling = true;
-      if (scrollTO) window.clearTimeout(scrollTO);
-      scrollTO = window.setTimeout(function () { scrolling = false; }, 140);
-    }, { passive: true });
   }
 
   var onScreen = false, booted = false;
