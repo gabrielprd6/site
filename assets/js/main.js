@@ -949,3 +949,24 @@
   if (reduceMotionQuery.addEventListener) reduceMotionQuery.addEventListener('change', onReduceChange);
   else if (reduceMotionQuery.addListener) reduceMotionQuery.addListener(onReduceChange);
 })();
+
+
+/* ---------------------------------------------------- Vidéo : gros bouton lecture */
+(function () {
+  var frame = document.querySelector('[data-video]');
+  if (!frame) return;
+  var video = frame.querySelector('video');
+  var btn = frame.querySelector('.video-play');
+  if (!video || !btn) return;
+  // Avant la lecture : seulement le gros bouton (les contrôles natifs reviennent ensuite).
+  video.removeAttribute('controls');
+  btn.addEventListener('click', function () {
+    video.setAttribute('controls', '');
+    frame.classList.add('is-playing');
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { frame.classList.remove('is-playing'); });
+    video.focus();
+  });
+  video.addEventListener('play', function () { video.setAttribute('controls', ''); frame.classList.add('is-playing'); });
+  video.addEventListener('ended', function () { frame.classList.remove('is-playing'); });
+})();
