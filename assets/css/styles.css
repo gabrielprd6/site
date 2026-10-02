@@ -1306,3 +1306,21 @@ body.is-loading { overflow: hidden; }
 /* Accent bleu : petits titres et chiffres clés */
 .eyebrow { color: var(--accent); }
 .stat__value { color: var(--accent); }
+
+/* Photo de l'équipe à droite du titre (grands écrans) */
+.hero__inner { position: relative; }
+.hero__photo { display: none; }
+@media (min-width: 1025px) {
+  .hero__photo {
+    display: block;
+    position: absolute; z-index: -1;
+    top: 0; right: var(--gutter);
+    width: min(40%, 520px);
+    aspect-ratio: 1136 / 941;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__title { max-width: 56%; }
+}
