@@ -1,33 +1,32 @@
 /* ==========================================================================
    Altiora — feuille de style unique
-   Direction : corporate sobre. Fond blanc, encre bleu nuit, un seul accent bleu.
+   Direction : graphite sobre, alignée sur la vidéo. Titres en serif droit, texte en sans.
    Ordre : tokens → reset → primitives → header → hero → sections → révélations
            → responsive → accessibilité
    ========================================================================== */
 
 /* --------------------------------------------------------- 1. Design tokens */
 :root {
-  /* Identité sobre : fond blanc froid, encre bleu nuit, un seul accent bleu */
+  /* Identité graphite, alignée sur la vidéo : noir chaud, blanc, gris neutres.
+     Aucune couleur d'accent : la hiérarchie passe par la typo et le contraste. */
   --paper:   #FFFFFF;
-  --tint:    #F3F5F9;   /* bandes alternées */
+  --tint:    #F4F4F2;   /* bandes alternées */
 
-  /* Encre bleu nuit — contrastes mesurés sur blanc */
-  --ink:     #0B1B33;
-  --ink-2:   #44536B;   /* ~7.8:1 */
-  --ink-3:   #5B6980;   /* ~5.7:1 */
+  --ink:     #212121;   /* le noir de la vidéo */
+  --ink-2:   #4A4A48;   /* ~8.9:1 */
+  --ink-3:   #686865;   /* ~5.6:1 */
 
-  --line:    #E1E6EE;
-  --line-2:  #C5CDDA;
+  --line:    #E4E4E1;
+  --line-2:  #C8C8C4;
 
-  /* Accent unique : bleu de France profond */
-  --accent:  #1F4EA8;
-  --accent-2:#3E6FCB;   /* même teinte, plus claire (réseau, dégradés) */
+  --accent:  #212121;   /* = encre */
+  --accent-2:#6E6E6B;
 
   --on-ink:  #FFFFFF;
 
-  --shadow-sm: 0 1px 2px rgba(11, 27, 51, .06);
-  --shadow-md: 0 12px 32px -18px rgba(11, 27, 51, .28);
-  --shadow-lg: 0 40px 90px -45px rgba(11, 27, 51, .4);
+  --shadow-sm: 0 1px 2px rgba(20, 20, 20, .06);
+  --shadow-md: 0 12px 32px -18px rgba(20, 20, 20, .28);
+  --shadow-lg: 0 40px 90px -45px rgba(20, 20, 20, .4);
 
   /* Rythme */
   --radius-sm: 6px;
@@ -47,9 +46,9 @@
   --header-h: 76px;
 
   /* Typo */
-  --display: "Hanken Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --brand:   "Hanken Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;   /* logotype Croisia */
-  --brand-ink: #0B1B33;
+  --display: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --brand:   "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;   /* logotype Croisia, comme la vidéo */
+  --brand-ink: #212121;
   --sans:    "Hanken Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
 
   color-scheme: light;
@@ -130,13 +129,17 @@ ul, ol { list-style: none; padding: 0; }
 .hero__title, .sec-title, .cta-final__title, .quote__text, .footer__baseline {
   font-family: var(--display);
   font-weight: 600;
-  letter-spacing: -.03em;
-  line-height: 1.06;
+  letter-spacing: -.015em;
+  line-height: 1.08;
   text-wrap: balance;
 }
 .hero__title em, .sec-title em, .cta-final__title em {
   font-style: normal;
-  color: var(--accent);
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: .06em;
+  text-underline-offset: .12em;
+  text-decoration-color: var(--line-2);
 }
 
 /* Boutons ---------------------------------------------------------------- */
@@ -380,7 +383,7 @@ ul, ol { list-style: none; padding: 0; }
 /* Photo réelle sous un voile blanc : la texture reste, la page reste blanche
    et le texte garde son contraste encre-sur-blanc. */
 .hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: grayscale(1); }
 .hero__bg::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg,
@@ -392,9 +395,9 @@ ul, ol { list-style: none; padding: 0; }
 .hero__eyebrow { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
 
 .hero__title {
-  font-size: clamp(2.3rem, 1rem + 6.6vw, 6rem);
-  line-height: 1;
-  letter-spacing: -.035em;
+  font-size: clamp(2.3rem, 1rem + 6.2vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
   max-width: 16ch;
 }
@@ -424,7 +427,7 @@ ul, ol { list-style: none; padding: 0; }
   vertical-align: bottom;
   padding-bottom: .1em; margin-bottom: -.1em;
 }
-.rotator__i { display: inline-block; font-style: normal; color: var(--accent); white-space: nowrap; }
+.rotator__i { display: inline-block; font-style: normal; color: var(--ink); white-space: nowrap; }
 .rotator__dot { color: var(--accent); }
 
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; }
@@ -1214,10 +1217,10 @@ body.is-loading { overflow: hidden; }
   .flux__cap--last {
     background: var(--ink); border-color: var(--ink);
   }
-  .flux__cap--last b, .flux__cap--last span { color: #F4F7FC; }
+  .flux__cap--last b, .flux__cap--last span { color: #F4F4F2; }
   .flux__cap--last span { opacity: .78; }
-  .flux__cap--last .flux__gain { color: #9DB8EC; }
-  .flux__cap--last::before { color: #9DB8EC; }
+  .flux__cap--last .flux__gain { color: #B9B9B5; }
+  .flux__cap--last::before { color: #B9B9B5; }
 }
 @media (max-width: 640px) {
   .flux__captions { grid-template-columns: 1fr; gap: .75rem; }
@@ -1250,4 +1253,20 @@ body.is-loading { overflow: hidden; }
   .flux__sticky { padding: calc(var(--header-h) + 1rem) 0 1.25rem; gap: .75rem; }
   .flux__canvas { height: max(260px, calc(100svh - var(--header-h) - 15rem)); }
   .flux__head .sec-title { font-size: clamp(1.75rem, 1rem + 3.5vh, 2.6rem); }
+}
+
+
+/* ============================================================ Vidéo de présentation */
+.video-sec { border-top: 1px solid var(--line); }
+.video-frame {
+  max-width: 1040px; margin: clamp(2rem, 4vw, 3rem) auto 0;
+  border-radius: var(--radius); overflow: hidden;
+  background: #222222;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16 / 9;
+}
+.video-frame video { width: 100%; height: 100%; display: block; object-fit: cover; background: #222222; }
+.video-note {
+  margin-top: 1rem; text-align: center;
+  font-size: .8125rem; color: var(--ink-3);
 }

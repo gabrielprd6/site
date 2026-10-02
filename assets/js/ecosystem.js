@@ -27,11 +27,11 @@
   var ACCENT2 = [124, 196, 250];   // #7CC4FA
   var LIGHT   = [245, 245, 247];
   // Variante thème clair
-  var INK           = [11, 27, 51];    // encre bleu nuit
-  var ACCENT_LIGHT  = [31, 78, 168];   // #1F4EA8
-  var ACCENT2_LIGHT = [62, 111, 203];  // #3E6FCB
+  var INK           = [33, 33, 33];    // encre graphite
+  var ACCENT_LIGHT  = [33, 33, 33];    // #212121
+  var ACCENT2_LIGHT = [110, 110, 107]; // #6E6E6B
   var GOLD_DARK     = [240, 200, 130];
-  var GOLD_LIGHT    = [31, 78, 168];   // l'impulsion reprend l'accent bleu
+  var GOLD_LIGHT    = [33, 33, 33];    // l'impulsion reste à l'encre
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
   function mix(a, b, t) { return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
@@ -292,7 +292,7 @@
     // Cœur : le symbole Croisia (pyramide de losanges)
     ctx.textAlign = 'left';
     var LOGO = [[50,24,1],[36,38,.62],[64,38,.62],[22,52,.36],[50,52,.36],[78,52,.36],[8,66,.18],[36,66,.18],[64,66,.18],[92,66,.18]];
-    var ls = coreR * 0.62 / 44, lc = [11, 27, 51];   // #0B1B33
+    var ls = coreR * 0.62 / 44, lc = [33, 33, 33];   // #212121
     for (var lg = 0; lg < LOGO.length; lg++) {
       var gx = cx + (LOGO[lg][0] - 50) * ls, gy = cy + (LOGO[lg][1] - 45) * ls, gh = 11 * ls;
       ctx.fillStyle = rgba(dark ? [255, 255, 255] : lc, LOGO[lg][2] * 0.95);
@@ -330,7 +330,7 @@
 
       // tête lumineuse + halo
       var gg = ctx.createRadialGradient(hx, hy, 0, hx, hy, 11);
-      gg.addColorStop(0, rgba(dark ? [255, 244, 210] : [110, 150, 230], dark ? 0.95 : 1));
+      gg.addColorStop(0, rgba(dark ? [255, 244, 210] : [150, 150, 146], dark ? 0.95 : 1));
       gg.addColorStop(0.4, rgba(gold, dark ? 0.7 : 0.85));
       gg.addColorStop(1, rgba(gold, 0));
       ctx.fillStyle = gg;

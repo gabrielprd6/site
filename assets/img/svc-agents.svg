@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Composition abstraite : ondes concentriques autour d'un point actif">
   <defs>
     <linearGradient id="g2" x1=".2" y1="0" x2="1" y2="1">
-      <stop offset="0%"   stop-color="#F3F5F9"/>
-      <stop offset="100%" stop-color="#C5CDDA"/>
+      <stop offset="0%"   stop-color="#F4F4F2"/>
+      <stop offset="100%" stop-color="#C8C8C4"/>
     </linearGradient>
     <radialGradient id="halo" cx="50%" cy="52%" r="42%">
       <stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".9"/>
@@ -20,7 +20,7 @@
     <rect width="800" height="600" fill="url(#halo)"/>
 
     <!-- Ondes : la réponse qui se propage, 24 h/24 -->
-    <g fill="none" stroke="#0B1B33" transform="translate(400 312)">
+    <g fill="none" stroke="#212121" transform="translate(400 312)">
       <circle r="52"  stroke-opacity=".38" stroke-width="1.5"/>
       <circle r="106" stroke-opacity=".28" stroke-width="1.5"/>
       <circle r="164" stroke-opacity=".19" stroke-width="1.5"/>
@@ -29,17 +29,17 @@
     </g>
 
     <!-- Arc actif -->
-    <path d="M400 106a206 206 0 0 1 178 103" fill="none" stroke="#1F4EA8" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="400" cy="312" r="17" fill="#1F4EA8"/>
+    <path d="M400 106a206 206 0 0 1 178 103" fill="none" stroke="#212121" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="400" cy="312" r="17" fill="#212121"/>
 
     <!-- Points d'entrée sur les orbites -->
-    <g fill="#0B1B33" fill-opacity=".5">
+    <g fill="#212121" fill-opacity=".5">
       <circle cx="400" cy="206" r="5"/>
       <circle cx="564" cy="312" r="5"/>
       <circle cx="288" cy="405" r="5"/>
     </g>
 
-    <g stroke="#0B1B33" stroke-opacity=".07" stroke-width="1">
+    <g stroke="#212121" stroke-opacity=".07" stroke-width="1">
       <path d="M0 90h800M0 534h800"/>
     </g>
 
