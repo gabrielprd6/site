@@ -27,11 +27,11 @@
   var ACCENT2 = [124, 196, 250];   // #7CC4FA
   var LIGHT   = [245, 245, 247];
   // Variante thème clair
-  var INK           = [22, 22, 26];    // encre
-  var ACCENT_LIGHT  = [109, 40, 217];  // #6D28D9
-  var ACCENT2_LIGHT = [79, 70, 229];   // #4F46E5
+  var INK           = [11, 27, 51];    // encre bleu nuit
+  var ACCENT_LIGHT  = [31, 78, 168];   // #1F4EA8
+  var ACCENT2_LIGHT = [62, 111, 203];  // #3E6FCB
   var GOLD_DARK     = [240, 200, 130];
-  var GOLD_LIGHT    = [176, 120, 20];  // ambre profond (contraste sur clair)
+  var GOLD_LIGHT    = [31, 78, 168];   // l'impulsion reprend l'accent bleu
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
   function mix(a, b, t) { return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
@@ -200,8 +200,8 @@
     var pulse = 1 + Math.sin(clock * 1.6) * 0.06 + energy * 0.25;
     var coreR = R * 0.17 * pulse;
     var grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR * 2.4);
-    grad.addColorStop(0, rgba(mix(ACC, [255, 255, 255], dark ? 0.3 : 0.1), dark ? 0.9 : 0.55));
-    grad.addColorStop(0.35, rgba(ACC, (dark ? 0.5 : 0.32) + energy * 0.3));
+    grad.addColorStop(0, rgba(mix(ACC, [255, 255, 255], dark ? 0.3 : 0.1), dark ? 0.9 : 0.28));
+    grad.addColorStop(0.35, rgba(ACC, (dark ? 0.5 : 0.14) + energy * 0.14));
     grad.addColorStop(1, rgba(ACC, 0));
     ctx.fillStyle = grad;
     ctx.beginPath(); ctx.arc(cx, cy, coreR * 2.4, 0, Math.PI * 2); ctx.fill();
@@ -267,7 +267,7 @@
     var labeled = [];
     for (var li = 0; li < N; li++) if (nodes[li].tool && P[li].z > 0.06) labeled.push(li);
     labeled.sort(function (a, b) { return P[b].z - P[a].z; });
-    ctx.font = '500 11px Inter, system-ui, sans-serif';
+    ctx.font = '500 11px "Hanken Grotesk", system-ui, sans-serif';
     ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
     var boxes = [];
     for (var lj = 0; lj < labeled.length; lj++) {
@@ -292,7 +292,7 @@
     // Cœur : le symbole Croisia (pyramide de losanges)
     ctx.textAlign = 'left';
     var LOGO = [[50,24,1],[36,38,.62],[64,38,.62],[22,52,.36],[50,52,.36],[78,52,.36],[8,66,.18],[36,66,.18],[64,66,.18],[92,66,.18]];
-    var ls = coreR * 0.62 / 44, lc = [42, 33, 25];   // #2A2119
+    var ls = coreR * 0.62 / 44, lc = [11, 27, 51];   // #0B1B33
     for (var lg = 0; lg < LOGO.length; lg++) {
       var gx = cx + (LOGO[lg][0] - 50) * ls, gy = cy + (LOGO[lg][1] - 45) * ls, gh = 11 * ls;
       ctx.fillStyle = rgba(dark ? [255, 255, 255] : lc, LOGO[lg][2] * 0.95);
@@ -330,7 +330,7 @@
 
       // tête lumineuse + halo
       var gg = ctx.createRadialGradient(hx, hy, 0, hx, hy, 11);
-      gg.addColorStop(0, rgba(dark ? [255, 244, 210] : [190, 140, 40], dark ? 0.95 : 1));
+      gg.addColorStop(0, rgba(dark ? [255, 244, 210] : [110, 150, 230], dark ? 0.95 : 1));
       gg.addColorStop(0.4, rgba(gold, dark ? 0.7 : 0.85));
       gg.addColorStop(1, rgba(gold, 0));
       ctx.fillStyle = gg;
