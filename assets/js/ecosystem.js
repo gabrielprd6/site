@@ -28,10 +28,10 @@
   var LIGHT   = [245, 245, 247];
   // Variante thème clair
   var INK           = [33, 33, 33];    // encre graphite
-  var ACCENT_LIGHT  = [33, 33, 33];    // #212121
-  var ACCENT2_LIGHT = [110, 110, 107]; // #6E6E6B
+  var ACCENT_LIGHT  = [109, 40, 217];  // #6D28D9
+  var ACCENT2_LIGHT = [79, 70, 229];   // #4F46E5
   var GOLD_DARK     = [240, 200, 130];
-  var GOLD_LIGHT    = [33, 33, 33];    // l'impulsion reste à l'encre
+  var GOLD_LIGHT    = [109, 40, 217];  // l'impulsion reprend le violet
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
   function mix(a, b, t) { return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
@@ -330,7 +330,7 @@
 
       // tête lumineuse + halo
       var gg = ctx.createRadialGradient(hx, hy, 0, hx, hy, 11);
-      gg.addColorStop(0, rgba(dark ? [255, 244, 210] : [150, 150, 146], dark ? 0.95 : 1));
+      gg.addColorStop(0, rgba(dark ? [255, 244, 210] : [167, 139, 250], dark ? 0.95 : 1));
       gg.addColorStop(0.4, rgba(gold, dark ? 0.7 : 0.85));
       gg.addColorStop(1, rgba(gold, 0));
       ctx.fillStyle = gg;

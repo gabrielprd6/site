@@ -8,7 +8,7 @@
 /* --------------------------------------------------------- 1. Design tokens */
 :root {
   /* Identité graphite, alignée sur la vidéo : noir chaud, blanc, gris neutres.
-     Aucune couleur d'accent : la hiérarchie passe par la typo et le contraste. */
+     Un seul accent : le violet de marque. */
   --paper:   #FFFFFF;
   --tint:    #F4F4F2;   /* bandes alternées */
 
@@ -19,8 +19,8 @@
   --line:    #E4E4E1;
   --line-2:  #C8C8C4;
 
-  --accent:  #212121;   /* = encre */
-  --accent-2:#6E6E6B;
+  --accent:  #6D28D9;   /* violet de marque, le seul accent */
+  --accent-2:#4F46E5;
 
   --on-ink:  #FFFFFF;
 
@@ -135,11 +135,7 @@ ul, ol { list-style: none; padding: 0; }
 }
 .hero__title em, .sec-title em, .cta-final__title em {
   font-style: normal;
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: .06em;
-  text-underline-offset: .12em;
-  text-decoration-color: var(--line-2);
+  color: var(--accent);
 }
 
 /* Boutons ---------------------------------------------------------------- */
@@ -427,7 +423,7 @@ ul, ol { list-style: none; padding: 0; }
   vertical-align: bottom;
   padding-bottom: .1em; margin-bottom: -.1em;
 }
-.rotator__i { display: inline-block; font-style: normal; color: var(--ink); white-space: nowrap; }
+.rotator__i { display: inline-block; font-style: normal; color: var(--accent); white-space: nowrap; }
 .rotator__dot { color: var(--accent); }
 
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; }
@@ -1219,8 +1215,8 @@ body.is-loading { overflow: hidden; }
   }
   .flux__cap--last b, .flux__cap--last span { color: #F4F4F2; }
   .flux__cap--last span { opacity: .78; }
-  .flux__cap--last .flux__gain { color: #B9B9B5; }
-  .flux__cap--last::before { color: #B9B9B5; }
+  .flux__cap--last .flux__gain { color: #C4B5FD; }
+  .flux__cap--last::before { color: #C4B5FD; }
 }
 @media (max-width: 640px) {
   .flux__captions { grid-template-columns: 1fr; gap: .75rem; }

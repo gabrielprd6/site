@@ -257,6 +257,25 @@
         gsap.to(batch, { opacity: 1, x: 0, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.08 });
       }
     });
+
+    // Filet de sécurité : si un bloc entre à l'écran sans avoir été révélé
+    // (positions ScrollTrigger calculées avant la fin du chargement), on l'affiche.
+    if ('IntersectionObserver' in window) {
+      var safety = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var el = en.target;
+          safety.unobserve(el);
+          window.setTimeout(function () {
+            if (parseFloat(window.getComputedStyle(el).opacity) < 0.05) {
+              gsap.to(el, { opacity: 1, x: 0, y: 0, duration: 0.9, ease: 'expo.out' });
+            }
+          }, 350);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+      revealItems.forEach(function (el) { safety.observe(el); });
+    }
+    window.addEventListener('load', function () { ST.refresh(); });
   }
 
   /* --------------------------------- Panneau qui s'ouvre en plein écran */
