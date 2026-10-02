@@ -38,7 +38,7 @@
     </g>
 
     <!-- Arche pleine, unique accent de marque -->
-    <path d="M985 560V366a35 35 0 0 1 70 0v194" fill="#6D28D9" fill-opacity=".9"/>
+    <path d="M985 560V366a35 35 0 0 1 70 0v194" fill="#2346E0" fill-opacity=".9"/>
 
     <!-- Lignes de flux qui convergent vers l'arche -->
     <g fill="none" stroke="#212121" stroke-opacity=".28" stroke-width="1.5">

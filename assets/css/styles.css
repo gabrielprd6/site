@@ -8,9 +8,9 @@
 /* --------------------------------------------------------- 1. Design tokens */
 :root {
   /* Identité graphite, alignée sur la vidéo : noir chaud, blanc, gris neutres.
-     Un seul accent : le violet de marque. */
+     Un seul accent, bien présent : le bleu électrique. */
   --paper:   #FFFFFF;
-  --tint:    #F4F4F2;   /* bandes alternées */
+  --tint:    #EEF2FD;   /* bandes alternées, teintées de l'accent */
 
   --ink:     #212121;   /* le noir de la vidéo */
   --ink-2:   #4A4A48;   /* ~8.9:1 */
@@ -19,8 +19,8 @@
   --line:    #E4E4E1;
   --line-2:  #C8C8C4;
 
-  --accent:  #6D28D9;   /* violet de marque, le seul accent */
-  --accent-2:#4F46E5;
+  --accent:  #2346E0;   /* bleu électrique, le seul accent (blanc dessus : 6.4:1) */
+  --accent-2:#5B7BEA;
 
   --on-ink:  #FFFFFF;
 
@@ -174,7 +174,9 @@ ul, ol { list-style: none; padding: 0; }
 .btn__arrow { transition: transform var(--dur) var(--ease-out); }
 .btn:hover .btn__arrow { transform: translateX(4px); }
 
-.btn--ink { --btn-bg: var(--ink); --btn-fg: var(--on-ink); }
+.btn--ink { --btn-bg: var(--accent); --btn-fg: var(--on-ink); }
+.btn--ink::before { background: var(--ink); }
+.btn--ink:hover { color: var(--on-ink); }
 
 .btn--ghost {
   --btn-bg: transparent;
@@ -229,7 +231,7 @@ ul, ol { list-style: none; padding: 0; }
   color: var(--ink-2);
   margin-bottom: 1.5rem;
 }
-.eyebrow__rule { width: 2.5rem; height: 1px; flex: none; background: var(--line-2); }
+.eyebrow__rule { width: 2.5rem; height: 1px; flex: none; background: var(--accent); }
 
 .sec-head { max-width: 52rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .sec-head--center {
@@ -383,9 +385,9 @@ ul, ol { list-style: none; padding: 0; }
 .hero__bg::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(255, 255, 255, .80) 0%,
-    rgba(255, 255, 255, .94) 42%,
-    #FFFFFF 88%);
+    rgba(238, 242, 253, .82) 0%,
+    rgba(238, 242, 253, .95) 42%,
+    #EEF2FD 88%);
 }
 
 .hero__eyebrow { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
@@ -1215,8 +1217,8 @@ body.is-loading { overflow: hidden; }
   }
   .flux__cap--last b, .flux__cap--last span { color: #F4F4F2; }
   .flux__cap--last span { opacity: .78; }
-  .flux__cap--last .flux__gain { color: #C4B5FD; }
-  .flux__cap--last::before { color: #C4B5FD; }
+  .flux__cap--last .flux__gain { color: #A9BCF5; }
+  .flux__cap--last::before { color: #A9BCF5; }
 }
 @media (max-width: 640px) {
   .flux__captions { grid-template-columns: 1fr; gap: .75rem; }
@@ -1266,3 +1268,7 @@ body.is-loading { overflow: hidden; }
   margin-top: 1rem; text-align: center;
   font-size: .8125rem; color: var(--ink-3);
 }
+
+/* Accent bleu : petits titres et chiffres clés */
+.eyebrow { color: var(--accent); }
+.stat__value { color: var(--accent); }

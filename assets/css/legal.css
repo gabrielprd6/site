@@ -1,4 +1,4 @@
-:root{--paper:#FFFFFF;--ink:#212121;--ink-2:#4A4A48;--line:#E4E4E1;--accent:#6D28D9;--brand:"Source Serif 4",Georgia,serif;--sans:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;--display:"Source Serif 4",Georgia,serif}
+:root{--paper:#FFFFFF;--ink:#212121;--ink-2:#4A4A48;--line:#E4E4E1;--accent:#2346E0;--brand:"Source Serif 4",Georgia,serif;--sans:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;--display:"Source Serif 4",Georgia,serif}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:1rem}

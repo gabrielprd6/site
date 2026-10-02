@@ -29,8 +29,8 @@
     </g>
 
     <!-- Arc actif -->
-    <path d="M400 106a206 206 0 0 1 178 103" fill="none" stroke="#6D28D9" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="400" cy="312" r="17" fill="#6D28D9"/>
+    <path d="M400 106a206 206 0 0 1 178 103" fill="none" stroke="#2346E0" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="400" cy="312" r="17" fill="#2346E0"/>
 
     <!-- Points d'entrée sur les orbites -->
     <g fill="#212121" fill-opacity=".5">
