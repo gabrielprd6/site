@@ -179,7 +179,6 @@
     // heroPush(); featureVisuals(); teamParallax(); tickerSkew();
 
     featureLists();   // apparition en cascade, une seule fois
-    fluxScene();      // légendes de la scène flux (opacité only, section visible)
     steps();          // activation des étapes, une seule fois
     stats();          // montée des chiffres, une seule fois
 

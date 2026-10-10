@@ -1173,9 +1173,9 @@ body.is-loading { overflow: hidden; }
 
 
 /* ============================================================ Téléphone & tablette :
-   pas de réseau interactif. La scène « flux » devient une section statique :
-   titre + 4 cartes (2 × 2 sur tablette, 1 colonne sur téléphone). */
-@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+   et désormais partout : plus de réseau interactif. La scène « flux » est une
+   section statique : titre + 4 cartes (2 × 2, 1 colonne sur téléphone). */
+@media all {
   .flux { min-height: 0 !important; background: var(--paper); }
   .flux__sticky {
     position: static; min-height: 0; overflow: visible;
