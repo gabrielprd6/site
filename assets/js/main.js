@@ -658,6 +658,61 @@
     update();
   })();
 
+  /* ------------------------------------------------------ Menus déroulants */
+  (function dropdowns() {
+    var items = $$('.nav__item.has-sub');
+    if (!items.length) return;
+
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function setOpen(item, open) {
+      item.classList.toggle('is-open', open);
+      var btn = $('.nav__btn', item);
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function closeAll(except) {
+      items.forEach(function (it) { if (it !== except) setOpen(it, false); });
+    }
+
+    items.forEach(function (item) {
+      var btn = $('.nav__btn', item);
+      var timer = null;
+
+      btn.addEventListener('click', function () {
+        // Avec une souris, le survol a déjà ouvert le menu : le clic ne doit pas le refermer.
+        var willOpen = canHover ? true : !item.classList.contains('is-open');
+        closeAll(item);
+        setOpen(item, willOpen);
+      });
+
+      if (canHover) {
+        item.addEventListener('mouseenter', function () {
+          window.clearTimeout(timer);
+          closeAll(item);
+          setOpen(item, true);
+        });
+        item.addEventListener('mouseleave', function () {
+          timer = window.setTimeout(function () { setOpen(item, false); }, 140);
+        });
+      }
+
+      // Le focus clavier quitte le menu : on le referme.
+      item.addEventListener('focusout', function (e) {
+        if (!item.contains(e.relatedTarget)) setOpen(item, false);
+      });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && item.classList.contains('is-open')) {
+          setOpen(item, false);
+          btn.focus();
+        }
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav__item.has-sub')) closeAll(null);
+    });
+  })();
+
   /* --------------------------------------------------------- Menu mobile */
   (function mobileNav() {
     var toggle = $('#nav-toggle');

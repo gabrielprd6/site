@@ -1,0 +1,622 @@
+{{HEAD}}{{HEADER}}
+<!-- ============================================================ Loader d'intro -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <svg class="loader__mark" viewBox="-6 10 112 70" aria-hidden="true" focusable="false">
+  <g opacity="0.1"><polygon points="8,54 20,66 8,78 -4,66"/><polygon points="36,54 48,66 36,78 24,66"/><polygon points="64,54 76,66 64,78 52,66"/><polygon points="92,54 104,66 92,78 80,66"/></g>
+  <g opacity="0.26"><polygon points="22,40 34,52 22,64 10,52"/><polygon points="50,40 62,52 50,64 38,52"/><polygon points="78,40 90,52 78,64 66,52"/></g>
+  <g opacity="0.58"><polygon points="36,26 48,38 36,50 24,38"/><polygon points="64,26 76,38 64,50 52,38"/></g>
+  <polygon points="50,12 62,24 50,36 38,24"/>
+</svg>
+    <span class="loader__word">CROISIA</span>
+    <span class="loader__tag">Conseil &amp; développement IA</span>
+    <span class="loader__pct"><span id="loader-num">0</span> %</span>
+    <span class="loader__bar" aria-hidden="true"><i id="loader-bar"></i></span>
+  </div>
+</div>
+
+<main id="contenu">
+
+<!-- ============================================================ Hero -->
+<section class="hero" id="top">
+  <!-- Fond photo réel (fuselage ENAC) sous un voile clair : la page reste blanche. -->
+  <div class="hero__bg" aria-hidden="true">
+    <img src="assets/img/hero-band.jpg" alt="" width="2000" height="422" fetchpriority="high" decoding="async" data-parallax="0.22">
+  </div>
+
+  <div class="shell hero__inner">
+    <figure class="hero__photo" data-anim="hero">
+      <img src="assets/img/equipe-croisia.jpg" alt="Gabriel et Oscar, fondateurs de Croisia, en réunion de travail" width="1136" height="941" fetchpriority="high" decoding="async">
+    </figure>
+    <p class="eyebrow hero__eyebrow" data-anim="hero">
+      <span class="eyebrow__rule" aria-hidden="true"></span>
+      Agence d'automatisation &amp; d'IA pour PME
+    </p>
+
+    <h1 class="hero__title" data-split>
+      Faites passer votre PME <em>aux outils</em> de demain.
+    </h1>
+
+    <div class="hero__meta">
+      <p class="hero__lede" data-anim="hero">
+        Automatisations et agents IA sur mesure qui vous font gagner des heures
+        chaque semaine — et plus de clients.
+      </p>
+
+      <div class="hero__side" data-anim="hero">
+        <p class="hero__kicker">
+          Et arrêtez de<br class="br-mobile">
+          <span class="rotator" aria-hidden="true"><span class="rotator__i" id="rotator">perdre du temps</span></span><span class="rotator__dot" aria-hidden="true">.</span>
+          <span class="sr-only">perdre du temps, faire à la main, rater des clients.</span>
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--ink btn--lg" href="#contact" data-magnetic>
+            Demander mon audit gratuit
+            <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+          <a class="link-u link-play" href="#video"><span aria-hidden="true">▶</span> Voir la vidéo (45&nbsp;s)</a>
+        </div>
+
+        <p class="hero__note">Sans engagement · Réponse sous 24&nbsp;h · 30&nbsp;min de votre temps</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Constat -->
+<section class="section" id="probleme">
+  <div class="shell">
+    <header class="sec-head" data-reveal="up">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Le constat</p>
+      <h2 class="sec-title" data-split>
+        Vos équipes passent trop de temps sur des tâches que <em>l'IA peut faire</em>.
+      </h2>
+      <p class="sec-lede">
+        Chaque semaine, des heures disparaissent dans des gestes répétitifs.
+        Ce n'est pas un problème d'effort : c'est un problème d'outillage.
+      </p>
+    </header>
+
+    <ul class="pains">
+      <li class="pain" data-reveal="up">
+        <h3>Des tâches répétitives chronophages</h3>
+        <p>Saisie, devis, relances, reporting : les mêmes gestes, chaque semaine, à la main.</p>
+      </li>
+      <li class="pain" data-reveal="up">
+        <h3>Des outils qui ne se parlent pas</h3>
+        <p>Un devis dans un tableur, un client dans un mail, une facture ailleurs. Et vous au milieu.</p>
+      </li>
+      <li class="pain" data-reveal="up">
+        <h3>Un manque de visibilité en ligne</h3>
+        <p>Vos futurs clients cherchent, trouvent un concurrent. Vous n'êtes simplement pas là.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ Flux (scène épinglée) -->
+<section class="flux" id="flux" data-flux aria-label="Comment votre flux d'automatisation se met en place">
+  <div class="flux__sticky">
+    <header class="flux__head shell">
+      <p class="eyebrow eyebrow--center"><span class="eyebrow__rule" aria-hidden="true"></span>Le principe</p>
+      <h2 class="sec-title">De vos outils au temps gagné.</h2>
+    </header>
+
+
+    <div class="flux__captions">
+      <p class="flux__cap flux__cap--first"><b>Les tâches répétitives, faites toutes seules.</b><span>Saisie, devis, relances, facturation, reporting…</span></p>
+      <p class="flux__cap"><b>Chaque tâche automatisée, c'est du temps rendu.</b><span>Vos outils s'en chargent, reliés en un seul flux.</span></p>
+      <p class="flux__cap"><b>Ça tourne 24/7 — pendant que vous avancez.</b><span>Sans double saisie, sans oubli, sans y penser.</span></p>
+      <p class="flux__cap flux__cap--last"><b>Vous récupérez <i class="flux__gain">~10 h</i> chaque semaine.</b><span>Plus d'une journée rendue à votre équipe.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Services -->
+<div class="shell sec-head sec-head--center" id="services" data-reveal="up">
+  <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Services</p>
+  <h2 class="sec-title" data-split>Trois leviers, un seul objectif&nbsp;: vous rendre du temps.</h2>
+  <p class="sec-lede">L'automatisation des tâches en PME, les agents IA et une présence en ligne qui rapporte des clients. Pour choisir par où commencer, voir aussi <a class="link-u" href="/ia-pour-pme/">l'IA pour PME</a>.</p>
+</div>
+
+<!-- Bloc 1 — texte à gauche, visuel à droite -->
+<section class="feature feature--tint">
+  <div class="shell feature__inner">
+    <div class="feature__text" data-reveal="left">
+      <h3>Automatisation</h3>
+      <p>Reliez vos outils, supprimez la double saisie, et laissez tourner ce qui
+         n'a pas besoin de vous.</p>
+      <ul class="feature__list">
+        <li>Devis et factures pré-remplis</li>
+        <li>Relances programmées automatiquement</li>
+        <li>CRM et tableur toujours à jour</li>
+        <li>Reporting hebdomadaire sans saisie</li>
+      </ul>
+      <p class="feature__meta">Make · n8n · intégrations sur mesure</p>
+      <p class="feature__more"><a class="link-u" href="/automatisation-pme/">Automatisation PME →</a> <a class="link-u" href="/automatisation-make-n8n/">Expert Make et n8n →</a></p>
+    </div>
+    <figure class="feature__visual" data-reveal="right">
+      <img src="assets/img/svc-automation.svg" alt="Schéma : plusieurs outils reliés à un point central qui les synchronise"
+           width="800" height="600" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<!-- Bloc 2 — inversé -->
+<section class="feature">
+  <div class="shell feature__inner feature__inner--reverse">
+    <div class="feature__text" data-reveal="right">
+      <h3>Agents IA</h3>
+      <p>Des assistants qui répondent, qualifient et rédigent à votre place —
+         y compris quand vous êtes débordé.</p>
+      <ul class="feature__list">
+        <li>Réponse immédiate aux demandes entrantes</li>
+        <li>Qualification : budget, urgence, service concerné</li>
+        <li>Rédaction de premières réponses</li>
+        <li>Plus aucun prospect laissé sans réponse</li>
+      </ul>
+      <p class="feature__meta">Support · qualification de leads · rédaction</p>
+      <p class="feature__more"><a class="link-u" href="/agents-ia/">Découvrir les agents IA →</a></p>
+    </div>
+    <figure class="feature__visual" data-reveal="left">
+      <img src="assets/img/svc-agents.svg" alt="Schéma : ondes concentriques partant d'un point actif, symbolisant une réponse continue"
+           width="800" height="600" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<!-- Bloc 3 -->
+<section class="feature feature--tint">
+  <div class="shell feature__inner">
+    <div class="feature__text" data-reveal="left">
+      <h3>Visibilité web</h3>
+      <p>Un site qui convertit et une présence en ligne qui vous rend trouvable
+         par vos futurs clients.</p>
+      <ul class="feature__list">
+        <li>Site vitrine rapide et lisible</li>
+        <li>Pages pensées pour la conversion</li>
+        <li>Fiche Google renseignée et suivie</li>
+      </ul>
+      <p class="feature__meta">Site vitrine · pages de conversion · fiche Google</p>
+      <p class="feature__more"><a class="link-u" href="/visibilite-web/">Visibilité web et SEO →</a></p>
+    </div>
+    <figure class="feature__visual" data-reveal="right">
+      <img src="assets/img/svc-web.svg" alt="Schéma : cadres de pages web superposés avec un bouton d'action mis en avant"
+           width="800" height="600" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ Secteurs -->
+<section class="section" id="secteurs">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Votre métier</p>
+      <h2 class="sec-title">Des automatisations pensées pour votre secteur.</h2>
+      <p class="sec-lede">Chaque métier a ses outils et ses tâches répétitives. Nous avons une expérience particulière auprès de trois secteurs.</p>
+    </header>
+    <ul class="cards cards--3">{{SECTEURS}}</ul>
+  </div>
+</section>
+
+<!-- ============================================================ Vidéo de présentation -->
+<section class="section video-sec" id="video" aria-labelledby="video-title">
+  <div class="shell">
+    <header class="sec-head sec-head--center">
+      <p class="eyebrow eyebrow--center"><span class="eyebrow__rule" aria-hidden="true"></span>Croisia en 45 secondes</p>
+      <h2 class="sec-title" id="video-title">Une nuit dans une PME, avec un agent IA.</h2>
+    </header>
+    <figure class="video-frame" data-video>
+      <video controls playsinline preload="none" width="1920" height="1080"
+             poster="assets/video/croisia-presentation-poster.jpg"
+             aria-describedby="video-title">
+        <source src="assets/video/croisia-presentation.mp4" type="video/mp4">
+        Votre navigateur ne lit pas la vidéo. <a href="assets/video/croisia-presentation.mp4">Télécharger la vidéo (MP4, 4&nbsp;Mo)</a>.
+      </video>
+      <button class="video-play" type="button" aria-label="Lire la vidéo de présentation (45 secondes, avec musique)">
+        <span class="video-play__btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </span>
+      </button>
+    </figure>
+    <div class="video-cta">
+      <a class="btn btn--ink btn--lg" href="#contact">Demander mon audit gratuit
+        <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Méthode -->
+<section class="section" id="methode">
+  <div class="shell">
+    <header class="sec-head sec-head--center" data-reveal="up">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Méthode</p>
+      <h2 class="sec-title" data-split>Comment ça marche</h2>
+      <p class="sec-lede">
+        Quatre étapes, zéro jargon. Vous savez à tout moment où vous en êtes et
+        ce que ça coûte.
+      </p>
+    </header>
+
+    <ol class="steps" data-steps>
+      <div class="steps__rail" aria-hidden="true"><i></i></div>
+      <li class="step" data-reveal="up">
+        <span class="step__n" aria-hidden="true">01</span>
+        <h3>Audit gratuit</h3>
+        <p>On identifie ensemble vos tâches à fort potentiel d'automatisation. 30&nbsp;minutes, en visio.</p>
+      </li>
+      <li class="step" data-reveal="up">
+        <span class="step__n" aria-hidden="true">02</span>
+        <h3>Devis sur mesure</h3>
+        <p>Un plan clair et chiffré, avec le gain de temps estimé pour chaque automatisation.</p>
+      </li>
+      <li class="step" data-reveal="up">
+        <span class="step__n" aria-hidden="true">03</span>
+        <h3>Mise en place</h3>
+        <p>On construit et on connecte. Vos équipes sont formées en même temps.</p>
+      </li>
+      <li class="step" data-reveal="up">
+        <span class="step__n" aria-hidden="true">04</span>
+        <h3>Suivi</h3>
+        <p>Ajustements, mesure des résultats et accompagnement dans le temps.</p>
+      </li>
+    </ol>
+
+    <div class="steps__cta" data-reveal="up">
+      <a class="btn btn--ink btn--lg" href="#contact" data-magnetic>
+        Commencer par l'audit gratuit
+        <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Résultats -->
+<section class="section section--tint" id="resultats">
+  <div class="shell">
+    <header class="sec-head sec-head--center" data-reveal="up">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Résultats</p>
+      <h2 class="sec-title" data-split>Ce que ça change concrètement.</h2>
+      <p class="sec-lede">
+        Ordres de grandeur observés sur des automatisations de PME. Vos chiffres
+        réels sont estimés pendant l'audit.
+      </p>
+    </header>
+
+    <div class="stats">
+      <div class="stat" data-reveal="up">
+        <p class="stat__value">
+          <span class="stat__prefix">~</span><span class="counter" data-to="10">0</span><span class="stat__suffix">h</span>
+        </p>
+        <p class="stat__label">gagnées par semaine</p>
+        <p class="stat__hint">Soit plus d'une journée de travail rendue à votre équipe.</p>
+      </div>
+      <div class="stat" data-reveal="up">
+        <p class="stat__value">
+          <span class="stat__prefix">−</span><span class="counter" data-to="70">0</span><span class="stat__suffix">%</span>
+        </p>
+        <p class="stat__label">de tâches manuelles</p>
+        <p class="stat__hint">Sur les process ciblés : saisie, relances, reporting.</p>
+      </div>
+      <div class="stat" data-reveal="up">
+        <p class="stat__value">
+          <span class="stat__prefix">&lt;</span><span class="counter" data-to="3">0</span><span class="stat__suffix">mois</span>
+        </p>
+        <p class="stat__label">pour rentabiliser</p>
+        <p class="stat__hint">Le temps gagné couvre l'investissement de départ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Équipe -->
+<section class="section" id="equipe">
+  <div class="shell">
+    <header class="sec-head sec-head--center" data-reveal="up">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>À propos de nous</p>
+      <h2 class="sec-title" data-split>Une équipe d'ingénieurs, pas une agence anonyme.</h2>
+      <p class="sec-lede">
+        Nous sommes étudiants ingénieurs à l'École Nationale de l'Aviation Civile
+        (ENAC). Notre formation nous apprend à piloter des systèmes complexes et à
+        optimiser des flux. Nous transposons cette exigence de précision dans votre
+        entreprise.
+      </p>
+    </header>
+
+    <ul class="team team--text">
+      <li class="team__member" data-reveal="left">
+        <span class="team__role">Automatisations &amp; intégrations</span>
+        <h3>Gabriel</h3>
+      </li>
+      <li class="team__member" data-reveal="up">
+        <span class="team__role">Agents IA &amp; traitement de données</span>
+        <h3>Oscar</h3>
+      </li>
+    </ul>
+
+    <p class="team__note" data-reveal="up">
+      Vous parlez directement aux personnes qui construisent. Pas d'équipe
+      intermédiaire, pas de vocabulaire technique inutile.
+    </p>
+
+    <div class="prose prose--about" data-reveal="up">
+      <h3>Agence IA pour PME, consultants en automatisation</h3>
+      <p>Croisia est une agence de conseil en IA et en automatisation. Nos consultants en automatisation
+         et nos consultants IA pour PME interviennent de bout en bout&nbsp;: audit, conception, mise en place
+         et suivi. Notre métier, c'est le conseil et le développement IA au service d'entreprises qui n'ont pas
+         d'équipe technique en interne. Faire appel à un consultant en automatisation ou à un consultant IA
+         pour PME, c'est gagner un interlocuteur qui parle métier avant de parler outils.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Avis (bulles) -->
+<section class="section section--tint" id="temoignage">
+  <div class="shell">
+    <header class="sec-head sec-head--center" data-reveal="up">
+      <p class="eyebrow eyebrow--center"><span class="eyebrow__rule" aria-hidden="true"></span>Avis clients</p>
+      <h2 class="sec-title" data-split>Avis clients Croisia&nbsp;: ils nous font confiance.</h2>
+    </header>
+
+    <div class="reviews">
+      <!-- Avis réel -->
+      <figure class="bubble bubble--feature" data-reveal="up">
+        <p class="bubble__text">
+          Une refonte de notre site et un vrai travail sur le référencement naturel :
+          nous sommes passés d'environ 60 à près de 150 pages positionnées sur Google,
+          et nous avons atteint la 2ᵉ place sur notre requête la plus stratégique.
+          Professionnel, autonome et impliqué — une collaboration que je recommande volontiers.
+        </p>
+        <figcaption class="bubble__cite">
+          <span class="bubble__ava"><img src="assets/img/pe-saliou.jpg" alt="Pierre-Emmanuel Saliou" width="200" height="200" loading="lazy" decoding="async"></span>
+          <span class="bubble__by">
+            <span class="bubble__name">Pierre-Emmanuel Saliou</span>
+            <span class="bubble__role">Dirigeant · Skaelia</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Ticker -->
+<section class="ticker" aria-label="Éléments de réassurance">
+  <div class="ticker__viewport">
+    <ul class="ticker__track" data-ticker>
+      <li>Audit 100&nbsp;% gratuit</li>
+      <li aria-hidden="true">✦</li>
+      <li>Sans engagement</li>
+      <li aria-hidden="true">✦</li>
+      <li>Sur mesure pour votre PME</li>
+      <li aria-hidden="true">✦</li>
+      <li>Une équipe, pas un intermédiaire</li>
+      <li aria-hidden="true">✦</li>
+      <li>Résultats mesurables</li>
+      <li aria-hidden="true">✦</li>
+      <li>Réponse sous 24&nbsp;h</li>
+      <li aria-hidden="true">✦</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ Guides -->
+<section class="section section--tint" id="guides">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Guides</p>
+      <h2 class="sec-title">Pour comprendre avant de décider.</h2>
+    </header>
+    {{ARTICLES}}
+    <p class="more-link"><a class="link-u" href="/blog/">Tous les guides →</a></p>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ -->
+<section class="section" id="faq">
+  <div class="shell faq__layout">
+    <div class="faq__aside" data-reveal="left">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>FAQ</p>
+      <h2 class="sec-title" data-split>Les questions qu'on nous pose le plus.</h2>
+    </div>
+
+    <div class="faq">
+      <div class="faq__item" data-reveal="right">
+        <h3>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn">
+            <span>Est-ce que c'est adapté à ma taille d'entreprise&nbsp;?</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="faq-1" role="region" aria-labelledby="faq-1-btn">
+          <div class="faq__a-inner">
+            <p>Oui, à partir du moment où au moins une personne répète les mêmes tâches chaque semaine. Le sweet spot se situe entre 5 et 100 salariés : assez de volume pour que l'automatisation paie, assez de souplesse pour la déployer vite.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal="right">
+        <h3>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn">
+            <span>Combien ça coûte&nbsp;?</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="faq-2" role="region" aria-labelledby="faq-2-btn">
+          <div class="faq__a-inner">
+            <p>L'audit est gratuit. Ensuite, vous recevez un devis sur mesure, chantier par chantier, avec le gain de temps estimé en face de chaque ligne. Vous choisissez ce que vous lancez — et vous pouvez commencer par une seule automatisation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal="right">
+        <h3>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn">
+            <span>Faut-il changer tous mes outils&nbsp;?</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="faq-3" role="region" aria-labelledby="faq-3-btn">
+          <div class="faq__a-inner">
+            <p>Non, c'est même l'inverse. Le principe est de faire parler entre eux les outils que vous utilisez déjà. On ne remplace un logiciel que s'il vous bloque vraiment, et jamais sans en avoir discuté.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal="right">
+        <h3>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-4" id="faq-4-btn">
+            <span>Combien de temps pour voir des résultats&nbsp;?</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="faq-4" role="region" aria-labelledby="faq-4-btn">
+          <div class="faq__a-inner">
+            <p>La première automatisation tourne généralement en une à deux semaines après l'audit. On commence volontairement par un chantier court et visible, pour que le gain soit mesurable avant d'aller plus loin.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal="right">
+        <h3>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn">
+            <span>Et mes données&nbsp;? Elles partent où&nbsp;?</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="faq-5" role="region" aria-labelledby="faq-5-btn">
+          <div class="faq__a-inner">
+            <p>On définit ensemble ce qui peut circuler et ce qui reste chez vous. Les accès sont limités au strict nécessaire, documentés, et révocables à tout moment. Vous restez propriétaire de vos automatisations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" data-reveal="right">
+        <h3>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-6" id="faq-6-btn">
+            <span>Qu'est-ce qu'une agence d'automatisation IA&nbsp;?</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </button>
+        </h3>
+        <div class="faq__a" id="faq-6" role="region" aria-labelledby="faq-6-btn">
+          <div class="faq__a-inner">
+            <p>Une agence d'automatisation IA conçoit, met en place et suit les automatisations et les agents IA d'une entreprise. Chez Croisia, vous parlez directement aux deux ingénieurs qui construisent, de l'audit gratuit au suivi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Contact -->
+<section class="section section--tint" id="contact">
+  <div class="shell cta-final__inner">
+    <div class="cta-final__copy" data-reveal="left">
+      <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Contact</p>
+      <h2 class="cta-final__title" data-split>Prêt à gagner du temps <em>dès ce mois-ci</em>&nbsp;?</h2>
+      <p class="cta-final__lede">
+        Décrivez-nous la tâche qui vous coûte le plus d'heures. On vous répond sous
+        24&nbsp;h avec une première piste — même si on ne travaille pas ensemble.
+      </p>
+      <ul class="cta-final__list">
+        <li>30 minutes en visio, sans préparation</li>
+        <li>Une liste priorisée de ce qui peut être automatisé</li>
+        <li>Aucun engagement, aucune relance commerciale</li>
+      </ul>
+      <p class="cta-final__alt">
+        Vous préférez réserver directement&nbsp;?
+        <!-- Remplacer href par votre lien Calendly -->
+        <a class="link-u" href="#" data-calendly>Choisir un créneau</a>
+      </p>
+    </div>
+
+    <!--FORM-->
+    <div class="formwrap" data-reveal="right">
+      <form class="form" id="audit-form" novalidate
+            action="https://formsubmit.co/contact@croisia.com" method="POST"
+            data-endpoint="https://formsubmit.co/ajax/contact@croisia.com"
+            aria-describedby="form-intro">
+        <p class="form__intro" id="form-intro">Audit gratuit — réponse sous 24&nbsp;h</p>
+        <!-- Réglages de l'envoi (FormSubmit → contact@croisia.com) -->
+        <input type="hidden" name="_subject" value="Nouvelle demande d'audit — croisia.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="field">
+          <label for="f-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-nom" name="nom" type="text" autocomplete="name" required
+                 aria-describedby="e-nom" placeholder="Camille Durand">
+          <p class="field__error" id="e-nom" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email professionnel <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required
+                 aria-describedby="e-email" placeholder="camille@entreprise.fr">
+          <p class="field__error" id="e-email" hidden></p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-entreprise">Entreprise <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-entreprise" name="entreprise" type="text" autocomplete="organization" required
+                   aria-describedby="e-entreprise" placeholder="Durand &amp; Fils">
+            <p class="field__error" id="e-entreprise" hidden></p>
+          </div>
+          <div class="field">
+            <label for="f-tel">Téléphone <span class="opt">(optionnel)</span></label>
+            <input id="f-tel" name="telephone" type="tel" autocomplete="tel"
+                   aria-describedby="e-tel" placeholder="06 12 34 56 78">
+            <p class="field__error" id="e-tel" hidden></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-tache">Quelle tâche vous fait perdre le plus de temps&nbsp;? <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="f-tache" name="tache" rows="4" required aria-describedby="e-tache f-tache-help"
+                    placeholder="Ex. : ressaisir chaque devis dans le CRM, relancer les impayés, répondre aux mêmes questions clients…"></textarea>
+          <p class="field__hint" id="f-tache-help">Une phrase suffit. Plus c'est concret, plus l'audit est utile.</p>
+          <p class="field__error" id="e-tache" hidden></p>
+        </div>
+
+        <!-- Anti-spam : champ leurre, invisible pour les humains -->
+        <div class="hp" aria-hidden="true">
+          <label for="f-site">Ne pas remplir</label>
+          <input id="f-site" name="_honey" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn btn--ink btn--lg btn--block" type="submit" id="submit-btn">
+          <span class="btn__label">Demander mon audit gratuit</span>
+          <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="form__legal">
+          En envoyant ce formulaire, vous acceptez d'être recontacté au sujet de votre demande.
+          Vos données ne sont ni revendues ni utilisées à d'autres fins.
+        </p>
+
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Confirmation -->
+      <div class="form-success" id="form-success" hidden>
+        <span class="form-success__badge" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <h3>Demande bien reçue.</h3>
+        <p>Merci&nbsp;! On revient vers vous sous 24&nbsp;h avec une première piste d'automatisation.</p>
+        <button class="btn btn--ghost" type="button" id="form-reset">Envoyer une autre demande</button>
+      </div>
+    </div>
+    <!--/FORM-->
+  </div>
+</section>
+
+</main>
+
+{{FOOTER}}
+{{SCRIPTS}}
