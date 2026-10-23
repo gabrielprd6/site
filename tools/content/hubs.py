@@ -302,6 +302,8 @@ HUBS = [
     # ======================================================================= SECTEURS
     {
         "slug": "recrutement",
+        "photo": "/assets/img/cabinets-poignee-de-main.jpg",
+        "photo_alt": "Deux professionnels en costume se serrent la main",
         "group": "secteurs",
         "nav_label": "Cabinets de recrutement",
         "nav_desc": "ATS, relances candidats, CV, entretiens",
