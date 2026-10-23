@@ -28,7 +28,7 @@ import hubs as hubs_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "54"
+ASSET_V = "55"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
@@ -549,7 +549,7 @@ def render_block(b, hub, n):
                  "ia": ("IA pour PME à", "ia-pour-pme", "IA pour PME"),
                  "agents": ("Agent IA à", "agents-ia", "Agents IA")}[b["service"]]
         lis = "".join(
-            f'<li><a class="city-tile" href="/{h["slug"]}/#{label[1]}">'
+            f'<li><a class="city-tile" href="/{h["slug"]}/">'
             f'<img src="/assets/img/villes/{h["city"]}-sq.webp" alt="" width="240" height="240" loading="lazy" decoding="async">'
             f'<span class="city-tile__txt"><span class="sr-only">{label[0]} </span><b>{inline(h["nav_label"])}</b></span></a></li>'
             for h in HUBS if h.get("group") == "villes")
