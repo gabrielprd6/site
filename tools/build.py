@@ -28,7 +28,7 @@ import hubs as hubs_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "43"
+ASSET_V = "44"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
@@ -339,6 +339,9 @@ def footer():
 
     popular = [ART_BY_PATH[p] for p in hubs_mod.FOOTER_ARTICLES if p in ART_BY_PATH]
     guides = "".join(f'<li><a href="{a["path"]}">{inline(a["title"])}</a></li>' for a in popular)
+    zones = ('<nav class="footer__zones" aria-label="Zones d’intervention"><h2 class="footer__h">Nous intervenons à</h2><ul>'
+             + "".join(f'<li><a href="/{h["slug"]}/">{inline(h["nav_label"])}</a></li>' for h in HUBS if h.get("group") == "villes")
+             + '<li><a href="/zones-intervention/">Partout en France</a></li></ul></nav>')
     return f"""<footer class="footer">
   <div class="shell">
     <div class="footer__inner footer__inner--wide">
@@ -359,6 +362,7 @@ def footer():
         </ul>
       </div>
     </div>
+    {zones}
     <a class="footer__word" href="/" aria-label="Croisia, accueil"><span aria-hidden="true">CROISIA</span></a>
     <div class="footer__legal">
       <p>© <span id="year">2026</span> Croisia. Tous droits réservés.</p>
@@ -583,7 +587,10 @@ def service_ld(hub, path):
 
 def render_hub(hub, form_html):
     path = f"/{hub['slug']}/"
-    trail = [("Accueil", "/"), (hub["breadcrumb"] if hub.get("breadcrumb") else hub["nav_label"], path)]
+    trail = [("Accueil", "/")]
+    if hub.get("parent"):
+        trail.append(hub["parent"])
+    trail.append((hub["breadcrumb"] if hub.get("breadcrumb") else hub["nav_label"], path))
     blocks = []
     for i, b in enumerate(hub["blocks"]):
         if b["type"] == "form":
@@ -797,7 +804,8 @@ def main():
     write("/404.html", render_404())
 
     urls = [("/", "monthly", "1.0")]
-    urls += [(f"/{h['slug']}/", "monthly", "0.9" if h["slug"] != "audit-gratuit" else "0.8") for h in HUBS]
+    prio = {"audit-gratuit": "0.8", "zones-intervention": "0.6"}
+    urls += [(f"/{h['slug']}/", "monthly", prio.get(h["slug"], "0.7" if h.get("group") == "villes" else "0.9")) for h in HUBS]
     urls += [("/blog/", "weekly", "0.7")] + [(a["path"], "monthly", "0.6") for a in ARTICLES]
     write("/sitemap.xml", sitemap(urls))
 

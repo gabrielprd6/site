@@ -27,6 +27,7 @@ de chaque requête figurent bien dans sa page.
 ├─ /concessions-automobiles/   Secteur : concessions auto
 ├─ /immobilier/                Secteur : agences, agents, chasseurs
 ├─ /audit-gratuit/             Conversion : audit + formulaire
+├─ /zones-intervention/        Index des villes, puis /automatisation-pme-<ville>/ (10 villes)
 └─ /blog/                      Index, puis /blog/<slug>/ (35 articles)
 ```
 
@@ -39,6 +40,7 @@ Chaque page se termine sur un appel vers `/audit-gratuit/`.
 | Je veux… | Je modifie |
 |---|---|
 | Changer le texte d'un pilier, d'un secteur ou de l'audit | `tools/content/hubs.py` |
+| Ajouter ou modifier une ville | `tools/content/cities.py` (un texte propre à chaque ville, jamais copié d'une autre) |
 | Écrire ou corriger un article | `tools/content/blog/<slug>.md` |
 | Ajouter un article | créer `tools/content/blog/<slug>.md` (modèle ci-dessous), puis `python tools/build.py` |
 | Modifier la page d'accueil | `tools/templates/home.html` |
@@ -72,7 +74,7 @@ vers le pilier et les « à lire aussi » sont générés.
 ## SEO
 
 - URL propres en dossier (`/slug/`), canonical en `https://croisia.com/slug/`.
-- `sitemap.xml` généré (46 URL). `robots.txt` pointe dessus.
+- `sitemap.xml` généré (57 URL). `robots.txt` pointe dessus.
 - Données structurées : ProfessionalService (accueil), Service (piliers), BlogPosting, BreadcrumbList.
 - Un seul `<h1>` par page ; titres < 60 caractères et meta descriptions < 160 caractères.
 

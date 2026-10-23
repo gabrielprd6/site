@@ -509,3 +509,9 @@ HUBS = [
         ],
     },
 ]
+
+
+# Pages locales (villes + index des zones), définies dans cities.py
+from cities import CITY_HUBS, ZONES_HUB  # noqa: E402
+
+HUBS += [ZONES_HUB] + CITY_HUBS

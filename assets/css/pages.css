@@ -243,3 +243,14 @@
    Sans ces règles, les blocs restaient à opacity 0 sur les pages qui ne chargent pas GSAP. */
 .js-anim [data-reveal].is-visible { opacity: 1; transform: none; }
 .js-anim.no-gsap .is-visible .ln__i, .js-anim.no-gsap .ln__i.is-visible { transform: none; }
+
+/* Pied de page : villes d'intervention */
+.footer__zones { padding-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.footer__zones ul { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+.footer__zones a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--ink-2); font-size: .9375rem; text-decoration: none;
+  transition: color var(--dur) var(--ease-out);
+}
+.footer__zones a:hover { color: var(--ink); }
+.more-link { gap: .5rem; flex-wrap: wrap; text-align: center; color: var(--ink-2); font-size: .9375rem; align-items: center; }
