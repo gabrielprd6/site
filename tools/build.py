@@ -28,7 +28,7 @@ import hubs as hubs_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "45"
+ASSET_V = "49"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
@@ -549,12 +549,14 @@ def render_block(b, hub, n):
                  "ia": ("IA pour PME à", "ia-pour-pme", "IA pour PME"),
                  "agents": ("Agent IA à", "agents-ia", "Agents IA")}[b["service"]]
         lis = "".join(
-            f'<li><a href="/{h["slug"]}/#{label[1]}">{label[0]} {inline(h["nav_label"])}</a></li>'
+            f'<li><a class="city-tile" href="/{h["slug"]}/#{label[1]}">'
+            f'<img src="/assets/img/villes/{h["city"]}-sq.webp" alt="" width="240" height="240" loading="lazy" decoding="async">'
+            f'<span class="city-tile__txt"><small>{label[0]}</small><b>{inline(h["nav_label"])}</b></span></a></li>'
             for h in HUBS if h.get("group") == "villes")
         head_b = {"eyebrow": "Près de chez vous", "title": b.get("title", f"{label[2]} dans votre ville"),
                   "lede": "Le contexte local, les priorités et les cas d'usage, ville par ville. Tout se fait en visio, partout en France."}
         return (f'<section class="section{tint}"><div class="shell">{sec_head(head_b)}'
-                f'<ul class="chips chips--wrap">{lis}</ul></div></section>')
+                f'<ul class="city-tiles">{lis}</ul></div></section>')
     if t == "form":
         bullets = "".join(f"<li>{inline(x)}</li>" for x in b.get("bullets", []))
         return (f'<section class="section section--tint" id="contact"><div class="shell cta-final__inner">'
@@ -574,15 +576,28 @@ def page_hero(hub, trail):
     points = ""
     if hub.get("points"):
         points = '<ul class="phero__points">' + "".join(f"<li>{inline(p)}</li>" for p in hub["points"]) + "</ul>"
-    return f"""<section class="phero">
-  <div class="shell phero__inner">
-    {breadcrumb(trail)}
-    <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>{inline(hub["eyebrow"])}</p>
+    text = f"""<p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>{inline(hub["eyebrow"])}</p>
     <h1 class="phero__title">{inline(hub["h1"])}</h1>
     <p class="phero__lede">{inline(hub["lede"])}</p>
     <div class="phero__actions">{actions}</div>
     <p class="hero__note">Sans engagement · Réponse sous 24 h · 30 min de votre temps</p>
-    {points}
+    {points}"""
+    if hub.get("photo"):
+        return f"""<section class="phero phero--photo">
+  <div class="shell phero__inner">
+    {breadcrumb(trail)}
+    <div class="phero__grid">
+      <div class="phero__text">
+    {text}
+      </div>
+      <figure class="phero__photo"><img src="{hub["photo"]}" alt="{plain(hub["photo_alt"])}" width="1200" height="800" fetchpriority="high" decoding="async"></figure>
+    </div>
+  </div>
+</section>"""
+    return f"""<section class="phero">
+  <div class="shell phero__inner">
+    {breadcrumb(trail)}
+    {text}
   </div>
 </section>"""
 

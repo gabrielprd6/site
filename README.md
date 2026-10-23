@@ -45,6 +45,7 @@ Chaque page se termine sur un appel vers `/audit-gratuit/`.
 | Ajouter un article | créer `tools/content/blog/<slug>.md` (modèle ci-dessous), puis `python tools/build.py` |
 | Modifier la page d'accueil | `tools/templates/home.html` |
 | Modifier le menu, le pied de page, les balises `<head>` | `tools/build.py` (fonctions `header`, `footer`, `head`) |
+| Remplacer ou ajouter une photo de ville | `python tools/images.py <dossier>` (Pillow requis) → `assets/img/villes/` |
 | Suivre les requêtes visées | `tools/data/requetes.csv` |
 | Styles | `assets/css/styles.css` (accueil), `assets/css/pages.css` (autres pages) |
 

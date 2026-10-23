@@ -280,6 +280,9 @@ def _city_hub(c):
     return {
         "slug": page,
         "group": "villes",
+        "city": c["slug"],
+        "photo": f"/assets/img/villes/{c['slug']}.webp",
+        "photo_alt": f"Vue de {name}",
         "parent": ("Automatisation PME", "/automatisation-pme/"),
         "nav_label": name,
         "nav_desc": f"Automatisation et IA pour PME à {name}",
