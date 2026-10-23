@@ -29,7 +29,7 @@ import team as team_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "62"
+ASSET_V = "63"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {

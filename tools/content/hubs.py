@@ -419,6 +419,8 @@ HUBS = [
     },
     {
         "slug": "immobilier",
+        "photo": "/assets/img/immobilier-agente-porte.jpg",
+        "photo_alt": "Une conseillère immobilière souriante ouvre la porte d'une maison",
         "group": "secteurs",
         "nav_label": "Agences immobilières",
         "nav_desc": "Veille d'annonces, leads, relances, estimations",
