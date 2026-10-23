@@ -364,6 +364,8 @@ HUBS = [
     },
     {
         "slug": "concessions-automobiles",
+        "photo": "/assets/img/concessions-vente-voiture.jpg",
+        "photo_alt": "Un conseiller serre la main d'une cliente dans un showroom automobile",
         "group": "secteurs",
         "nav_label": "Concessions automobiles",
         "nav_desc": "Sourcing VO, leads, relances, CRM",
