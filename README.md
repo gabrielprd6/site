@@ -40,7 +40,8 @@ Chaque page se termine sur un appel vers `/audit-gratuit/`.
 | Je veux… | Je modifie |
 |---|---|
 | Changer le texte d'un pilier, d'un secteur ou de l'audit | `tools/content/hubs.py` |
-| Ajouter ou modifier une ville | `tools/content/cities.py` (un texte propre à chaque ville, jamais copié d'une autre) |
+| Ajouter ou modifier une ville | `tools/content/cities.py` + `tools/content/cities_local.py` (un texte propre à chaque ville, jamais copié d'une autre) |
+| Vérifier que les pages villes ne se ressemblent pas | `python tools/similarity.py` (viser ressemblance moyenne < 15 %, texte propre à la ville > 65 %) |
 | Écrire ou corriger un article | `tools/content/blog/<slug>.md` |
 | Ajouter un article | créer `tools/content/blog/<slug>.md` (modèle ci-dessous), puis `python tools/build.py` |
 | Modifier la page d'accueil | `tools/templates/home.html` |

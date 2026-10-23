@@ -8,6 +8,8 @@ Faits locaux : volontairement généraux et stables (pas de chiffres, pas de nom
 Croisia travaille à distance : on ne revendique aucune agence locale.
 """
 
+from cities_local import EXTRA  # noqa: E402
+
 SOLUTION_SLUGS = ["automatisation-pme", "ia-pour-pme", "agents-ia", "automatisation-make-n8n", "visibilite-web"]
 
 REMOTE = ("L'audit gratuit, la mise en place et le suivi se font en visio, ce qui suffit dans la grande majorité des cas. "
@@ -273,12 +275,12 @@ LOCAL = {
 
 def _city_hub(c):
     name = c["name"]
-    page = f"automatisation-pme-{c['slug']}"
-    sectors = c["sectors"]
+    x = EXTRA[c["slug"]]
     ia_text, ia_bullets = LOCAL[c["slug"]]["ia"]
     ag_text, ag_bullets = LOCAL[c["slug"]]["agents"]
+    sectors = x["sectors"]
     return {
-        "slug": page,
+        "slug": f"automatisation-pme-{c['slug']}",
         "group": "villes",
         "city": c["slug"],
         "photo": f"/assets/img/villes/{c['slug']}.webp",
@@ -287,47 +289,36 @@ def _city_hub(c):
         "nav_label": name,
         "nav_desc": f"Automatisation et IA pour PME à {name}",
         "card_title": f"Automatisation PME à {name}",
-        "card_text": f"Agence d'automatisation et d'IA pour les PME de {name} : audit gratuit en visio.",
+        "card_text": x["tagline"],
         "service_type": f"Automatisation et IA pour PME à {name}",
         "title": f"Automatisation PME à {name} : agence IA | Croisia",
-        "description": f"Agence d'automatisation et d'IA pour PME à {name} : automatisations Make et n8n, agents IA, audit gratuit en visio. Consultants à votre écoute.",
+        "description": x["desc"],
         "eyebrow": f"Automatisation et IA à {name}",
         "h1": f"Automatisation PME à {name} : agence IA et consultants",
-        "lede": f"Croisia est une agence d'automatisation et d'IA qui accompagne les PME de {name}. Nos consultants en automatisation "
-                f"relient vos outils, déploient l'IA là où elle sert et mettent en place des agents IA, pour que vos équipes gagnent du temps.",
-        "points": ["Audit gratuit en visio", "Vos outils actuels conservés", "Chiffrage chantier par chantier"],
+        "lede": x["lede"],
+        "cta_title": x["cta_title"],
+        "cta_text": x["cta_text"],
         "blocks": [
-            {"type": "split", "id": "automatisation", "eyebrow": "Automatisation PME", "title": f"Automatisation PME à {name}",
-             "md": c["context"] + "\n\nLe détail de la méthode est sur notre page [automatisation pour PME](/automatisation-pme/) ; "
-                   "pour les plateformes, voir nos [experts Make et n8n](/automatisation-make-n8n/).",
-             "bullets": c["priorities"], "meta": "Ce qu'on automatise en priorité"},
-            {"type": "split", "id": "ia-pour-pme", "tint": True, "reverse": True, "eyebrow": "IA pour PME", "title": f"IA pour PME à {name}",
-             "md": ia_text + "\n\nDes cas d'usage concrets sont décrits sur la page [IA pour PME](/ia-pour-pme/).",
-             "bullets": ia_bullets},
-            {"type": "split", "id": "agents-ia", "eyebrow": "Agents IA", "title": f"Agent IA à {name}",
-             "md": ag_text + "\n\nVoir aussi nos [agents IA](/agents-ia/) : périmètre, garde-fous et déploiement.",
-             "bullets": ag_bullets},
+            {"type": "split", "id": "automatisation", "eyebrow": "Automatisation PME", "title": x["h_auto"],
+             "md": c["context"], "bullets": c["priorities"], "meta": "Ce qu'on automatise en priorité"},
+            {"type": "cards", "tint": True, "eyebrow": "Pôles d'activité", "title": x["poles_title"], "cols": 2,
+             "items": [{"title": t, "text": d} for t, d in x["poles"]]},
+            {"type": "split", "id": "ia-pour-pme", "reverse": True, "eyebrow": "IA pour PME", "title": x["h_ia"],
+             "md": ia_text, "bullets": ia_bullets},
+            {"type": "prose", "tint": True, "eyebrow": "Cas concret", "title": x["scenario_title"], "md": x["scenario"]},
+            {"type": "split", "id": "agents-ia", "eyebrow": "Agent IA", "title": x["h_agents"],
+             "md": ag_text, "bullets": ag_bullets},
             {"type": "cards", "tint": True, "eyebrow": "Secteurs", "title": f"Recrutement, automobile, immobilier à {name}",
              "items": [
                  {"title": "Cabinets de recrutement", "text": sectors["recrutement"], "href": "/recrutement/"},
                  {"title": "Concessions automobiles", "text": sectors["auto"], "href": "/concessions-automobiles/"},
                  {"title": "Agences immobilières", "text": sectors["immo"], "href": "/immobilier/"},
              ]},
-            {"type": "split", "eyebrow": "Mode de travail", "title": f"Comment nous travaillons avec les entreprises de {name}",
-             "md": f"Faire appel à un consultant en automatisation à {name}, c'est avoir un interlocuteur qui parle métier avant de parler outils. " + REMOTE
-                   + "\n\nVous parlez directement aux deux ingénieurs qui construisent, de l'audit au suivi. Voir [l'audit gratuit](/audit-gratuit/).",
-             "bullets": ["30 minutes en visio, sans préparation", "Une liste priorisée de ce qui peut être automatisé", "Un devis sur mesure, chantier par chantier", "Aucun engagement"]},
-            {"type": "steps", "tint": True},
-            {"type": "links", "eyebrow": "Autres villes", "title": "Nous accompagnons aussi les PME de",
+            {"type": "faq", "title": f"Questions sur l'automatisation à {name}"},
+            {"type": "links", "tint": True, "eyebrow": "Autres villes", "title": "Nous accompagnons aussi les PME de",
              "slugs": [f"automatisation-pme-{s}" for s in c["nearby"]]},
-            {"type": "faq", "tint": True, "title": f"Questions sur l'automatisation à {name}"},
         ],
-        "faq": c["faq"] + [
-            (f"L'audit est-il gratuit pour une entreprise de {name} ?",
-             "Oui. L'audit dure 30 minutes, il est gratuit et sans engagement. Il débouche sur une liste priorisée de ce qui peut être automatisé."),
-            ("Faut-il changer nos outils ?",
-             "Non. On fait communiquer ceux que vous utilisez déjà, et on ne remplace un logiciel que s'il vous bloque vraiment."),
-        ],
+        "faq": x["faq"],
     }
 
 

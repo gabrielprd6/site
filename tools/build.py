@@ -28,7 +28,7 @@ import hubs as hubs_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "55"
+ASSET_V = "56"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
