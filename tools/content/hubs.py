@@ -82,6 +82,7 @@ HUBS = [
             {"type": "steps", "tint": True},
             {"type": "links", "title": "Aller plus loin dans l'automatisation", "slugs": ["automatisation-make-n8n", "agents-ia", "ia-pour-pme"]},
             {"type": "articles", "title": "Guides pour automatiser votre PME", "max": 9},
+            {"type": "cities", "service": "automatisation"},
             {"type": "faq"},
         ],
         "faq": [
@@ -134,6 +135,7 @@ HUBS = [
                    "Pour aller plus loin sur les assistants qui répondent et qualifient à votre place, voir nos [agents IA](/agents-ia/)."},
             {"type": "steps", "tint": True},
             {"type": "links", "slugs": ["agents-ia", "automatisation-pme", "automatisation-make-n8n"]},
+            {"type": "cities", "service": "ia"},
             {"type": "faq"},
         ],
         "faq": [
@@ -189,6 +191,7 @@ HUBS = [
                  ("Lancer et suivre", "Mise en ligne progressive, journal des échanges, ajustements réguliers."),
              ]},
             {"type": "links", "tint": True, "slugs": ["ia-pour-pme", "automatisation-pme", "automatisation-make-n8n"]},
+            {"type": "cities", "service": "agents"},
             {"type": "faq"},
         ],
         "faq": [
@@ -512,6 +515,6 @@ HUBS = [
 
 
 # Pages locales (villes + index des zones), définies dans cities.py
-from cities import CITY_HUBS, ZONES_HUB  # noqa: E402
+from cities import CITY_HUBS  # noqa: E402
 
-HUBS += [ZONES_HUB] + CITY_HUBS
+HUBS += CITY_HUBS

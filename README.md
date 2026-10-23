@@ -27,7 +27,7 @@ de chaque requête figurent bien dans sa page.
 ├─ /concessions-automobiles/   Secteur : concessions auto
 ├─ /immobilier/                Secteur : agences, agents, chasseurs
 ├─ /audit-gratuit/             Conversion : audit + formulaire
-├─ /zones-intervention/        Index des villes, puis /automatisation-pme-<ville>/ (10 villes)
+├─ /automatisation-pme-<ville>/ 10 villes (Toulouse, Paris, Lyon…) : sections Automatisation, IA, Agent IA
 └─ /blog/                      Index, puis /blog/<slug>/ (35 articles)
 ```
 
@@ -74,7 +74,7 @@ vers le pilier et les « à lire aussi » sont générés.
 ## SEO
 
 - URL propres en dossier (`/slug/`), canonical en `https://croisia.com/slug/`.
-- `sitemap.xml` généré (57 URL). `robots.txt` pointe dessus.
+- `sitemap.xml` généré (56 URL). `robots.txt` pointe dessus.
 - Données structurées : ProfessionalService (accueil), Service (piliers), BlogPosting, BreadcrumbList.
 - Un seul `<h1>` par page ; titres < 60 caractères et meta descriptions < 160 caractères.
 

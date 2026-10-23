@@ -28,7 +28,7 @@ import hubs as hubs_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "44"
+ASSET_V = "45"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
@@ -339,9 +339,9 @@ def footer():
 
     popular = [ART_BY_PATH[p] for p in hubs_mod.FOOTER_ARTICLES if p in ART_BY_PATH]
     guides = "".join(f'<li><a href="{a["path"]}">{inline(a["title"])}</a></li>' for a in popular)
-    zones = ('<nav class="footer__zones" aria-label="Zones d’intervention"><h2 class="footer__h">Nous intervenons à</h2><ul>'
+    zones = ('<nav class="footer__zones" aria-label="Automatisation et IA par ville"><h2 class="footer__h">Automatisation et IA à</h2><ul>'
              + "".join(f'<li><a href="/{h["slug"]}/">{inline(h["nav_label"])}</a></li>' for h in HUBS if h.get("group") == "villes")
-             + '<li><a href="/zones-intervention/">Partout en France</a></li></ul></nav>')
+             + '</ul></nav>')
     return f"""<footer class="footer">
   <div class="shell">
     <div class="footer__inner footer__inner--wide">
@@ -498,7 +498,8 @@ def render_block(b, hub, n):
         paras = md(b["md"]) if b.get("md") else ""
         meta = f'<p class="feature__meta">{inline(b["meta"])}</p>' if b.get("meta") else ""
         rev = " feature__inner--reverse" if b.get("reverse") else ""
-        return f"""<section class="section{tint}"><div class="shell feature__inner{rev}">
+        sid = f' id="{b["id"]}"' if b.get("id") else ""
+        return f"""<section{sid} class="section{tint}"><div class="shell feature__inner{rev}">
   <div class="feature__text prose" data-reveal="up">
     {('<p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>' + inline(b["eyebrow"]) + '</p>') if b.get("eyebrow") else ''}
     <h2 class="sec-title">{inline(b["title"])}</h2>{paras}{meta}
@@ -543,6 +544,17 @@ def render_block(b, hub, n):
         return render_block({"type": "cards", "eyebrow": b.get("eyebrow", "À lire aussi"),
                              "title": b.get("title", "Pour aller plus loin"), "items": cards,
                              "cols": min(3, len(cards))}, hub, n)
+    if t == "cities":
+        label = {"automatisation": ("Automatisation PME à", "automatisation", "Automatisation PME"),
+                 "ia": ("IA pour PME à", "ia-pour-pme", "IA pour PME"),
+                 "agents": ("Agent IA à", "agents-ia", "Agents IA")}[b["service"]]
+        lis = "".join(
+            f'<li><a href="/{h["slug"]}/#{label[1]}">{label[0]} {inline(h["nav_label"])}</a></li>'
+            for h in HUBS if h.get("group") == "villes")
+        head_b = {"eyebrow": "Près de chez vous", "title": b.get("title", f"{label[2]} dans votre ville"),
+                  "lede": "Le contexte local, les priorités et les cas d'usage, ville par ville. Tout se fait en visio, partout en France."}
+        return (f'<section class="section{tint}"><div class="shell">{sec_head(head_b)}'
+                f'<ul class="chips chips--wrap">{lis}</ul></div></section>')
     if t == "form":
         bullets = "".join(f"<li>{inline(x)}</li>" for x in b.get("bullets", []))
         return (f'<section class="section section--tint" id="contact"><div class="shell cta-final__inner">'
@@ -804,7 +816,7 @@ def main():
     write("/404.html", render_404())
 
     urls = [("/", "monthly", "1.0")]
-    prio = {"audit-gratuit": "0.8", "zones-intervention": "0.6"}
+    prio = {"audit-gratuit": "0.8"}
     urls += [(f"/{h['slug']}/", "monthly", prio.get(h["slug"], "0.7" if h.get("group") == "villes" else "0.9")) for h in HUBS]
     urls += [("/blog/", "weekly", "0.7")] + [(a["path"], "monthly", "0.6") for a in ARTICLES]
     write("/sitemap.xml", sitemap(urls))

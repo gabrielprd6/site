@@ -206,17 +206,81 @@ CITIES = [
     },
 ]
 
-_BY_SLUG = {c["slug"]: c for c in CITIES}
+# Textes propres à chaque ville pour les deux autres services (IA pour PME, agent IA).
+LOCAL = {
+    "toulouse": {
+        "ia": ("Dans un tissu de bureaux d'études et de sous-traitants, l'IA sert d'abord à retrouver et à lire : documents techniques, comptes rendus, cahiers des charges. Une IA bien cadrée répond à partir de vos propres documents, avec la source indiquée.",
+               ["Recherche dans vos documents techniques et qualité", "Résumé de comptes rendus et de cahiers des charges", "Extraction de données de devis et de commandes"]),
+        "agents": ("À Toulouse, un agent IA absorbe le flux de demandes que les équipes techniques n'ont pas le temps de traiter : demandes de devis, questions de suivi, relances. Il qualifie, répond au simple et passe la main à un humain pour le reste.",
+                   ["Qualification des demandes de devis", "Réponse aux questions de suivi de commande", "Escalade vers l'expert concerné"]),
+    },
+    "paris": {
+        "ia": ("À Paris, la sollicitation permanente est le vrai problème : emails, appels, messages. L'IA aide à trier, à résumer et à préparer des premières réponses, pour que les équipes traitent d'abord ce qui compte.",
+               ["Tri et résumé des emails entrants", "Premières réponses relues avant envoi", "Synthèse de réunions et d'appels"]),
+        "agents": ("Sur un marché où le client compare vite, un agent IA répond en quelques secondes, à toute heure, et qualifie la demande avant de la transmettre au bon interlocuteur.",
+                   ["Réponse immédiate aux demandes entrantes", "Qualification : budget, urgence, besoin", "Transmission avec une fiche déjà remplie"]),
+    },
+    "lyon": {
+        "ia": ("Avec des outils très variés d'une entreprise à l'autre, l'IA est utile là où les données ne sont pas structurées : documents scannés, emails libres, notes. Elle les lit et les transforme en données exploitables par vos outils existants.",
+               ["Extraction de données de documents et de factures", "Classement automatique des emails", "Résumés de dossiers pour les équipes commerciales"]),
+        "agents": ("Un agent IA peut servir de point d'entrée commun à plusieurs outils : il reçoit la demande, consulte le CRM, la facturation ou le stock, puis répond ou crée la bonne tâche.",
+                   ["Consultation de plusieurs outils pour répondre", "Création de tâches dans le bon logiciel", "Suivi des demandes jusqu'à leur clôture"]),
+    },
+    "marseille": {
+        "ia": ("Pour les petites structures débordées, l'IA doit rester simple : rédiger un premier jet de devis ou de réponse, résumer un échange, trier le courrier. Pas de projet lourd, un usage à la fois.",
+               ["Premier jet de devis et de réponses", "Tri du courrier et des demandes", "Résumé des échanges avec un client"]),
+        "agents": ("Un agent IA tient le standard numérique : il répond aux demandes de renseignements, prend les coordonnées et fixe un rendez-vous, pendant que l'équipe est sur le terrain.",
+                   ["Réponse aux demandes de renseignements", "Prise de coordonnées et de rendez-vous", "Relais vers un humain pour les cas particuliers"]),
+    },
+    "bordeaux": {
+        "ia": ("Dans le négoce et les services, l'IA aide à gérer la relation client à grande échelle sans la déshumaniser : personnaliser un message, résumer l'historique d'un client avant un appel, préparer une proposition.",
+               ["Résumé de l'historique d'un client avant un appel", "Messages personnalisés relus par vos équipes", "Préparation de propositions à partir de vos modèles"]),
+        "agents": ("Un agent IA peut répondre aux questions courantes des clients et des partenaires (disponibilités, délais, état d'une commande) à partir de vos données, et alerter votre équipe dès qu'une demande sort du cadre.",
+                   ["Réponses sur les disponibilités et les délais", "Suivi de l'état d'une commande", "Alerte de l'équipe en cas d'exception"]),
+    },
+    "nantes": {
+        "ia": ("Les équipes nantaises, déjà à l'aise avec les outils en ligne, peuvent aller vite : brancher des modèles d'IA sur les outils existants pour résumer, classer, rédiger, sans changer de logiciel.",
+               ["IA branchée sur vos outils en ligne existants", "Classement et résumé automatiques", "Rédaction assistée de réponses et de contenus"]),
+        "agents": ("Un agent IA s'intègre à une pile d'outils déjà en place : il lit un formulaire, enrichit une fiche, prévient l'équipe sur la messagerie et propose une réponse.",
+                   ["Lecture de formulaires et enrichissement de fiches", "Notification sur votre messagerie d'équipe", "Réponse proposée pour validation"]),
+    },
+    "lille": {
+        "ia": ("Quand le volume de commandes et de demandes est élevé, l'IA absorbe la variabilité : emails libres, pièces jointes, messages mal formulés. Elle les comprend et les range avant qu'ils ne saturent l'équipe.",
+               ["Compréhension des demandes mal formulées", "Lecture de pièces jointes et de bons de commande", "Priorisation des urgences"]),
+        "agents": ("Un agent IA traite en première ligne les questions répétitives sur les commandes et les livraisons, et ne remonte à l'équipe que les cas où une décision est nécessaire.",
+                   ["Réponses sur les commandes et les livraisons", "Détection des retards à signaler", "Remontée des seuls cas à décision"]),
+    },
+    "nice": {
+        "ia": ("Face à une clientèle internationale, l'IA prépare des premières réponses dans plusieurs langues et résume chaque demande en une ligne. Vos équipes relisent, ajustent le ton, et gardent la relation.",
+               ["Premières réponses multilingues relues", "Résumé des demandes en une ligne", "Adaptation du ton à la clientèle"]),
+        "agents": ("Un agent IA répond à toute heure, y compris le week-end et en haute saison, qualifie la demande et propose un créneau ou un rendez-vous, sans que personne n'ait à décrocher.",
+                   ["Réponse à toute heure, y compris en saison", "Qualification et proposition de créneaux", "Transmission des demandes importantes"]),
+    },
+    "montpellier": {
+        "ia": ("Pour une entreprise qui grandit vite, l'IA évite d'embaucher pour de l'administratif : saisie de données, tri, premiers brouillons. On l'introduit sur les tâches qui reviennent chaque semaine.",
+               ["Saisie et extraction de données", "Brouillons de documents et de réponses", "Tri des demandes entrantes"]),
+        "agents": ("Un agent IA devient le premier contact d'une structure en croissance : il accueille, renseigne, qualifie, et laisse l'équipe se concentrer sur le développement.",
+                   ["Accueil et renseignement des prospects", "Qualification des demandes", "Passage de relais à l'équipe commerciale"]),
+    },
+    "strasbourg": {
+        "ia": ("Avec des documents et des échanges en plusieurs langues, l'IA traduit, résume et classe. Elle aide aussi à retrouver un passage précis dans un contrat ou une notice, quelle que soit sa langue.",
+               ["Résumé et traduction de documents", "Recherche d'un passage dans vos contrats et notices", "Classement automatique par type de document"]),
+        "agents": ("Un agent IA peut répondre dans la langue du client, à partir de vos documents, et passer la main à un collaborateur dès que la demande exige de l'expertise.",
+                   ["Réponse dans la langue du client", "Réponses fondées sur vos documents", "Passage de relais vers un expert"]),
+    },
+}
 
 
 def _city_hub(c):
     name = c["name"]
     page = f"automatisation-pme-{c['slug']}"
     sectors = c["sectors"]
+    ia_text, ia_bullets = LOCAL[c["slug"]]["ia"]
+    ag_text, ag_bullets = LOCAL[c["slug"]]["agents"]
     return {
         "slug": page,
         "group": "villes",
-        "parent": ("Zones d'intervention", "/zones-intervention/"),
+        "parent": ("Automatisation PME", "/automatisation-pme/"),
         "nav_label": name,
         "nav_desc": f"Automatisation et IA pour PME à {name}",
         "card_title": f"Automatisation PME à {name}",
@@ -227,27 +291,33 @@ def _city_hub(c):
         "eyebrow": f"Automatisation et IA à {name}",
         "h1": f"Automatisation PME à {name} : agence IA et consultants",
         "lede": f"Croisia est une agence d'automatisation et d'IA qui accompagne les PME de {name}. Nos consultants en automatisation "
-                f"relient vos outils, suppriment la double saisie et déploient des agents IA, pour que vos équipes gagnent du temps.",
+                f"relient vos outils, déploient l'IA là où elle sert et mettent en place des agents IA, pour que vos équipes gagnent du temps.",
         "points": ["Audit gratuit en visio", "Vos outils actuels conservés", "Chiffrage chantier par chantier"],
         "blocks": [
-            {"type": "split", "eyebrow": f"Les PME de {name}", "title": f"Automatiser son entreprise à {name}",
-             "md": c["context"], "bullets": c["priorities"], "meta": "Ce qu'on automatise en priorité"},
-            {"type": "links", "tint": True, "eyebrow": "Solutions",
-             "title": f"Ce que nous mettons en place pour les entreprises de {name}", "slugs": SOLUTION_SLUGS},
-            {"type": "cards", "eyebrow": "Secteurs", "title": f"Recrutement, automobile, immobilier à {name}",
+            {"type": "split", "id": "automatisation", "eyebrow": "Automatisation PME", "title": f"Automatisation PME à {name}",
+             "md": c["context"] + "\n\nLe détail de la méthode est sur notre page [automatisation pour PME](/automatisation-pme/) ; "
+                   "pour les plateformes, voir nos [experts Make et n8n](/automatisation-make-n8n/).",
+             "bullets": c["priorities"], "meta": "Ce qu'on automatise en priorité"},
+            {"type": "split", "id": "ia-pour-pme", "tint": True, "reverse": True, "eyebrow": "IA pour PME", "title": f"IA pour PME à {name}",
+             "md": ia_text + "\n\nDes cas d'usage concrets sont décrits sur la page [IA pour PME](/ia-pour-pme/).",
+             "bullets": ia_bullets},
+            {"type": "split", "id": "agents-ia", "eyebrow": "Agents IA", "title": f"Agent IA à {name}",
+             "md": ag_text + "\n\nVoir aussi nos [agents IA](/agents-ia/) : périmètre, garde-fous et déploiement.",
+             "bullets": ag_bullets},
+            {"type": "cards", "tint": True, "eyebrow": "Secteurs", "title": f"Recrutement, automobile, immobilier à {name}",
              "items": [
                  {"title": "Cabinets de recrutement", "text": sectors["recrutement"], "href": "/recrutement/"},
                  {"title": "Concessions automobiles", "text": sectors["auto"], "href": "/concessions-automobiles/"},
                  {"title": "Agences immobilières", "text": sectors["immo"], "href": "/immobilier/"},
              ]},
-            {"type": "split", "tint": True, "eyebrow": "Mode de travail", "title": f"Comment nous travaillons avec les entreprises de {name}",
+            {"type": "split", "eyebrow": "Mode de travail", "title": f"Comment nous travaillons avec les entreprises de {name}",
              "md": f"Faire appel à un consultant en automatisation à {name}, c'est avoir un interlocuteur qui parle métier avant de parler outils. " + REMOTE
                    + "\n\nVous parlez directement aux deux ingénieurs qui construisent, de l'audit au suivi. Voir [l'audit gratuit](/audit-gratuit/).",
              "bullets": ["30 minutes en visio, sans préparation", "Une liste priorisée de ce qui peut être automatisé", "Un devis sur mesure, chantier par chantier", "Aucun engagement"]},
-            {"type": "steps"},
-            {"type": "links", "tint": True, "eyebrow": "Autres villes", "title": "Nous accompagnons aussi les PME de",
+            {"type": "steps", "tint": True},
+            {"type": "links", "eyebrow": "Autres villes", "title": "Nous accompagnons aussi les PME de",
              "slugs": [f"automatisation-pme-{s}" for s in c["nearby"]]},
-            {"type": "faq", "title": f"Questions sur l'automatisation à {name}"},
+            {"type": "faq", "tint": True, "title": f"Questions sur l'automatisation à {name}"},
         ],
         "faq": c["faq"] + [
             (f"L'audit est-il gratuit pour une entreprise de {name} ?",
@@ -259,35 +329,3 @@ def _city_hub(c):
 
 
 CITY_HUBS = [_city_hub(c) for c in CITIES]
-
-ZONES_HUB = {
-    "slug": "zones-intervention",
-    "group": "zones",
-    "nav_label": "Zones d'intervention",
-    "nav_desc": "Partout en France, à distance",
-    "card_title": "Zones d'intervention",
-    "card_text": "Nous accompagnons les PME partout en France, à distance.",
-    "service_type": "Automatisation et IA pour PME en France",
-    "title": "Automatisation et IA pour PME partout en France | Croisia",
-    "description": "Croisia accompagne les PME partout en France, à distance : audit gratuit en visio, automatisations Make et n8n, agents IA. Toulouse, Paris, Lyon et plus.",
-    "eyebrow": "Zones d'intervention",
-    "h1": "Nous accompagnons les PME partout en France",
-    "lede": "Croisia travaille à distance : l'audit, la mise en place et le suivi se font en visio, avec des entreprises de toute la France. "
-            "Voici les villes pour lesquelles nous avons détaillé le contexte local.",
-    "points": ["Partout en France", "Audit gratuit en visio", "Rendez-vous sur place à étudier"],
-    "blocks": [
-        {"type": "cards", "eyebrow": "Villes", "title": "Automatisation et IA pour les PME de votre ville", "cols": 3,
-         "items": [{"title": c_["card_title"], "text": c_["card_text"], "href": f"/{c_['slug']}/"} for c_ in CITY_HUBS]},
-        {"type": "split", "tint": True, "eyebrow": "À distance", "title": "Travailler ensemble sans être dans la même ville",
-         "md": REMOTE + "\n\nVotre ville n'est pas dans la liste ? Cela ne change rien : [demandez votre audit gratuit](/audit-gratuit/).",
-         "bullets": ["Visio pour l'audit et les points d'étape", "Accès aux outils sécurisés et documentés", "Comptes et automatisations à votre nom", "Suivi après la mise en place"]},
-        {"type": "faq"},
-    ],
-    "faq": [
-        ("Intervenez-vous en dehors des grandes villes ?", "Oui. Le travail se fait à distance, donc votre localisation n'a pas d'importance pour l'audit et la mise en place."),
-        ("Peut-on se rencontrer en personne ?", "Un rendez-vous sur place peut être étudié selon le projet. Dans la plupart des cas, la visio suffit."),
-        ("L'audit est-il gratuit partout en France ?", "Oui : 30 minutes en visio, sans engagement."),
-    ],
-}
-
-CITY_PATHS = [f"/automatisation-pme-{c['slug']}/" for c in CITIES]
