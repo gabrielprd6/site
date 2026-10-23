@@ -26,9 +26,9 @@ STATS = [
 
 MEMBERS = [
     {"name": "Gabriel Praud", "role": "Cofondateur · Automatisations & intégrations",
-     "photo": "/assets/img/team/gabriel.jpg", "rdv": True},
+     "photo": "/assets/img/team/gabriel.jpg"},
     {"name": "Oscar Javelle", "role": "Cofondateur · Agents IA & traitement de données",
-     "photo": "/assets/img/team/oscar.jpg", "rdv": True},
+     "photo": "/assets/img/team/oscar.jpg"},
 ]
 
 TESTIMONIAL = {
