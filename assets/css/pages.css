@@ -302,3 +302,6 @@
   .city-tile small { font-size: .62rem; white-space: nowrap; }
   .city-tile b { font-size: .95rem; }
 }
+
+/* Pages villes : hero un peu plus bas sous le menu */
+.phero--photo { padding-top: calc(var(--header-h) + clamp(3.25rem, 7vw, 5.5rem)); }
