@@ -25,10 +25,11 @@ TOOLS = ROOT / "tools"
 sys.path.insert(0, str(TOOLS / "content"))
 
 import hubs as hubs_mod  # noqa: E402
+import team as team_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "56"
+ASSET_V = "59"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
@@ -295,7 +296,7 @@ def header(current=""):
         mobile += f'<p class="mobile-nav__h">{label}</p><ul>' + "".join(
             f'<li><a href="/{h["slug"]}/">{inline(h["nav_label"])}</a></li>' for h in nav_items(group)) + "</ul>"
     mobile += ('<p class="mobile-nav__h">Croisia</p><ul><li><a href="/blog/">Blog</a></li>'
-               '<li><a href="/#equipe">À propos</a></li></ul>')
+               '<li><a href="/a-propos/notre-equipe/">À propos · Notre équipe</a></li></ul>')
 
     return f"""<body>
 <a class="skip-link" href="#contenu">Aller au contenu principal</a>
@@ -310,7 +311,7 @@ def header(current=""):
         {sub("solutions", "sub-solutions", "Solutions")}
         {sub("secteurs", "sub-secteurs", "Secteurs")}
         <li><a href="/blog/"{cur("/blog/")}>Blog</a></li>
-        <li><a href="/#equipe">À propos</a></li>
+        <li><a href="/a-propos/notre-equipe/"{cur("/a-propos/")}>À propos</a></li>
       </ul>
     </nav>
     <div class="header__actions">
@@ -358,7 +359,7 @@ def footer():
         <ul>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
           <li><a href="/audit-gratuit/">Audit gratuit</a></li>
-          <li><a href="/#equipe">À propos</a></li>
+          <li><a href="/a-propos/notre-equipe/">Notre équipe</a></li>
         </ul>
       </div>
     </div>
@@ -811,6 +812,113 @@ def sitemap(urls):
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + rows + "</urlset>\n")
 
 
+# ------------------------------------------------------------ Notre équipe
+
+LINKEDIN = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12V21h-4v-4.92c0-1.17-.02-2.68-1.63-2.68-1.63 0-1.88 1.28-1.88 2.6V21h-4V9.75z"/></svg>')
+
+
+def render_team():
+    t = team_mod
+    path = "/a-propos/notre-equipe/"
+    trail = [("Accueil", "/"), ("Notre équipe", path)]
+    import json
+    ld = json.dumps({
+        "@context": "https://schema.org", "@type": "AboutPage", "name": "Notre équipe", "url": abs_url(path),
+        "mainEntity": {"@type": "Organization", "name": "Croisia", "url": SITE + "/",
+                       "member": [{"@type": "Person", "name": m["name"], "jobTitle": m["role"].split("·")[-1].strip(),
+                                   "worksFor": {"@type": "Organization", "name": "Croisia"}} for m in t.MEMBERS]},
+    }, ensure_ascii=False, separators=(",", ":"))
+
+    stats = "".join(f'<li><b>{inline(n)}</b><span>{inline(l)}</span></li>' for n, l in t.STATS)
+    cards = []
+    for m in t.MEMBERS:
+        li = (f'<a class="member__in" href="{m["linkedin"]}" rel="noopener" target="_blank" aria-label="LinkedIn de {plain(m["name"])}">{LINKEDIN}</a>'
+              if m.get("linkedin") else "")
+        rdv = '<a class="btn btn--ink btn--sm" href="/audit-gratuit/">Prendre RDV</a>' if m.get("rdv") else ""
+        cards.append(f'''<li class="member" data-reveal="up">
+  <div class="member__photo"><img src="{m["photo"]}" alt="Portrait de {plain(m["name"])}" width="800" height="1000"></div>
+  <h3>{inline(m["name"])}</h3><p>{inline(m["role"])}</p>
+  <div class="member__actions">{rdv}{li}</div>
+</li>''')
+    q = t.TESTIMONIAL
+    gallery = "".join(
+        f'<li><img src="{src}" alt="{plain(cap)}" width="{w}" height="{h}" loading="lazy" decoding="async"><span>{inline(cap)}</span></li>'
+        for src, cap, w, h in t.GALLERY)
+    panels = []
+    for p in t.JOIN:
+        btns = "".join(f'<a class="btn {"btn--ink" if main else "btn--ghost"} btn--sm" href="{href}">{inline(label)}</a>' for label, href, main in p["buttons"])
+        panels.append(f'<div class="join__panel" data-reveal="up"><h3>{inline(p["title"])}</h3><p>{inline(p["text"])}</p><div class="join__btns">{btns}</div></div>')
+    exp = "".join(f'<li><a href="{href}">{inline(label)} →</a></li>' for label, href in t.EXPERTISES)
+    gallery_section = (f'''<section class="section" aria-labelledby="vie-title">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up"><h2 class="sec-title" id="vie-title">La vie chez Croisia</h2></header>
+    <ul class="tgallery">{gallery}</ul>
+  </div>
+</section>''' if t.GALLERY else "")
+
+    page = head(t.TITLE, t.DESCRIPTION, path, jsonld=[ld, breadcrumb_ld(trail)])
+    page += header(path)
+    page += f"""<main id="contenu">
+<section class="thero">
+  <img class="thero__bg" src="{t.HERO["image"]}" alt="{plain(t.HERO["alt"])}" width="1136" height="941" fetchpriority="high" decoding="async">
+  <div class="shell thero__inner">
+    <div class="thero__crumbs">{breadcrumb(trail)}</div>
+    <h1 class="thero__title">Notre équipe</h1>
+    <p class="thero__lede">{inline(t.HERO["tagline"])}</p>
+    <div class="thero__actions">
+      <a class="btn btn--ink btn--lg" href="/audit-gratuit/">Parler à nos experts{ARROW}</a>
+      <a class="btn btn--light btn--lg" href="/automatisation-pme/">Découvrir nos services</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats-strip" aria-label="Croisia en chiffres"><div class="shell"><ul>{stats}</ul></div></section>
+
+<section class="section" id="equipe">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up"><h2 class="sec-title">L'équipe</h2></header>
+    <ul class="members">{"".join(cards)}</ul>
+  </div>
+</section>
+
+<section class="section section--tint" aria-labelledby="avis-title">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up">
+      <h2 class="sec-title" id="avis-title">Qui de mieux que nos clients pour parler de nous ?</h2>
+    </header>
+    <figure class="bubble bubble--feature" data-reveal="up">
+      <p class="bubble__text">{inline(q["text"])}</p>
+      <figcaption class="bubble__cite">
+        <span class="bubble__ava"><img src="{q["photo"]}" alt="{plain(q["name"])}" width="200" height="200" loading="lazy" decoding="async"></span>
+        <span class="bubble__by"><span class="bubble__name">{inline(q["name"])}</span><span class="bubble__role">{inline(q["role"])}</span></span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+{gallery_section}
+
+<section class="section section--tint" aria-labelledby="join-title">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up">
+      <h2 class="sec-title" id="join-title">Envie de travailler avec nous ?</h2>
+      <p class="sec-lede">Deux façons de nous rencontrer.</p>
+    </header>
+    <div class="join">{"".join(panels)}</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <header class="sec-head sec-head--flat" data-reveal="up"><h2 class="sec-title">Nos expertises</h2></header>
+    <ul class="exp-list">{exp}</ul>
+  </div>
+</section>
+</main>
+""" + footer() + scripts()
+    return page
+
+
 # --------------------------------------------------------------- main
 
 
@@ -823,6 +931,7 @@ def main():
     for hub in HUBS:
         pages[f"/{hub['slug']}/"] = render_hub(hub, form_html)
     pages["/blog/"] = render_blog_index()
+    pages["/a-propos/notre-equipe/"] = render_team()
     for a in ARTICLES:
         pages[a["path"]] = render_article(a)
 
@@ -833,6 +942,7 @@ def main():
     urls = [("/", "monthly", "1.0")]
     prio = {"audit-gratuit": "0.8"}
     urls += [(f"/{h['slug']}/", "monthly", prio.get(h["slug"], "0.7" if h.get("group") == "villes" else "0.9")) for h in HUBS]
+    urls += [("/a-propos/notre-equipe/", "monthly", "0.6")]
     urls += [("/blog/", "weekly", "0.7")] + [(a["path"], "monthly", "0.6") for a in ARTICLES]
     write("/sitemap.xml", sitemap(urls))
 
