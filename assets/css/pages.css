@@ -275,7 +275,7 @@
   grid-template-columns: repeat(auto-fill, minmax(6.75rem, 1fr));
 }
 @media (min-width: 900px) {
-  .city-tiles { grid-template-columns: repeat(5, 9.5rem); gap: 1.5rem 1.25rem; }
+  .city-tiles { grid-template-columns: repeat(5, minmax(0, 13rem)); gap: 1.75rem 1.5rem; }
 }
 .city-tile {
   display: grid; gap: .6rem; text-decoration: none; color: var(--ink);
@@ -288,20 +288,12 @@
 }
 .city-tile__txt { display: grid; gap: .1rem; line-height: 1.25; }
 .city-tile small { font-size: .75rem; color: var(--ink-3); }
-.city-tile b { font-family: var(--display); font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
+.city-tile b { font-family: var(--display); font-size: 1.2rem; font-weight: 600; letter-spacing: -.01em; }
 .city-tile:hover { transform: translateY(-3px); }
 .city-tile:hover img { box-shadow: var(--shadow-md); border-color: var(--accent); }
 .city-tile:hover b { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { .city-tile:hover { transform: none; } }
 
-/* Pages services : les 10 villes sur une seule ligne dès que la largeur le permet */
-@media (min-width: 1240px) {
-  .city-tiles { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 1rem .75rem; }
-  .city-tile { gap: .45rem; }
-  .city-tile img { border-radius: 10px; }
-  .city-tile small { font-size: .62rem; white-space: nowrap; }
-  .city-tile b { font-size: .95rem; }
-}
 
 /* Pages villes : hero un peu plus bas sous le menu */
 .phero--photo { padding-top: calc(var(--header-h) + clamp(3.25rem, 7vw, 5.5rem)); }
