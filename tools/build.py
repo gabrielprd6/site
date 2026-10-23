@@ -28,7 +28,7 @@ import hubs as hubs_mod  # noqa: E402
 
 SITE = "https://croisia.com"
 TODAY = datetime.date.today().isoformat()
-ASSET_V = "49"
+ASSET_V = "51"
 EMAIL = "contact@croisia.com"
 
 SEGMENTS = {
@@ -585,9 +585,9 @@ def page_hero(hub, trail):
     if hub.get("photo"):
         return f"""<section class="phero phero--photo">
   <div class="shell phero__inner">
-    {breadcrumb(trail)}
     <div class="phero__grid">
       <div class="phero__text">
+    {breadcrumb(trail)}
     {text}
       </div>
       <figure class="phero__photo"><img src="{hub["photo"]}" alt="{plain(hub["photo_alt"])}" width="1200" height="800" fetchpriority="high" decoding="async"></figure>
