@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "5f08e05c-6c7e-4265-b743-00a44c3b8425",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\candidate.json",
+  "output": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\crm-prospection.html",
+  "specification": {
+    "sha256": "1be16871ad107c28950af3081fad4f2ee9f0a8a9f614d43119cfb41c0bfdd41f",
+    "bytes": 39027
+  },
+  "artifact": {
+    "sha256": "89160477c6f12e16d1e1cef922230e9e8b623901abe8a545f40fedca1257e253",
+    "bytes": 857516
+  }
+}

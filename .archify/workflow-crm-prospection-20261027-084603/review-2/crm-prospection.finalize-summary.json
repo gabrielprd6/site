@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "workflow",
+  "quality": "showcase",
+  "specification": {
+    "path": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\candidate.json",
+    "sha256": "1be16871ad107c28950af3081fad4f2ee9f0a8a9f614d43119cfb41c0bfdd41f",
+    "bytes": 39027
+  },
+  "artifact": {
+    "path": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\crm-prospection.html",
+    "sha256": "89160477c6f12e16d1e1cef922230e9e8b623901abe8a545f40fedca1257e253",
+    "bytes": 857516
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\review-2\\crm-prospection.finalize.json",
+    "summaryReceipt": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\review-2\\crm-prospection.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-crm-prospection-20261027-084603\\review-2\\crm-prospection.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-27T07:46:32.010Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 11752,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

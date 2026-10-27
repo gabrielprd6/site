@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "e572ce4f-4ddf-4c70-a513-ab524c79b79c",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "C:\\Users\\gabin\\Documents\\site_auto\\.archify\\workflow-tri-mails-20261027-085432\\candidate.json",
+  "output": "C:\\Users\\gabin\\Documents\\site_auto\\docs\\cadrage\\tri-mails-gmail.html",
+  "specification": {
+    "sha256": "bd8639123c2b0ccfec265f1b6fe6ee46fecd1d6b2a7eafca283469d09c5c28e9",
+    "bytes": 37793
+  },
+  "artifact": {
+    "sha256": "d8810beade4fe55d4c6dc929d05beb9ea36a60cdca50eb1f109d0c38ce567bd8",
+    "bytes": 851033
+  }
+}
