@@ -49,7 +49,7 @@ HUBS = [
         "title": "Automatisation PME : automatiser son entreprise | Croisia",
         "description": "Automatisez les tâches répétitives de votre PME (devis, relances, reporting, CRM) sans changer vos outils. Audit gratuit de 30 minutes.",
         "eyebrow": "Automatisation pour PME",
-        "h1": "Automatiser son entreprise, sans changer d'outils",
+        "h1": "Automatisation PME : automatiser son entreprise sans changer d'outils",
         "lede": "Croisia automatise les tâches répétitives de votre PME : devis, relances, facturation, reporting, CRM. "
                 "On relie les logiciels que vous utilisez déjà, pour que votre équipe gagne du temps là où ça compte.",
         "points": ["Première automatisation en 1 à 2 semaines", "Vos outils actuels conservés", "Chiffrage chantier par chantier"],
@@ -80,7 +80,7 @@ HUBS = [
              "bullets": ["Pas de migration de données", "Vous restez propriétaire de vos automatisations", "Accès limités au strict nécessaire, révocables à tout moment", "Alertes en cas d'échec d'un scénario"],
              "meta": "Make · n8n · intégrations sur mesure"},
             {"type": "steps", "tint": True},
-            {"type": "links", "title": "Aller plus loin dans l'automatisation", "slugs": ["automatisation-make-n8n", "agents-ia", "ia-pour-pme"]},
+            {"type": "links", "title": "Aller plus loin dans l'automatisation", "slugs": ["automatisation-make-n8n", "agents-ia", "ia-pour-pme", "automatisation-toulouse"]},
             {"type": "articles", "title": "Guides pour automatiser votre PME", "max": 9},
             {"type": "cities", "service": "automatisation"},
             {"type": "faq"},
@@ -519,6 +519,76 @@ HUBS = [
     },
 ]
 
+
+# Guide généraliste « automatisation à Toulouse » : répond aux requêtes générales de la ville
+# (pas seulement à la marque). Groupe « local » : hors menu, relié par les pages piliers et la page ville.
+TOULOUSE_GUIDE = {
+    "slug": "automatisation-toulouse",
+    "group": "local",
+    "area": "Toulouse",
+    "nav_label": "Automatisation à Toulouse",
+    "card_title": "Automatisation à Toulouse : guide pour les PME",
+    "card_text": "Ce qu'on peut automatiser, comment choisir les outils et par où commencer, avec le contexte toulousain.",
+    "service_type": "Automatisation pour PME à Toulouse",
+    "title": "Automatisation à Toulouse : guide pour les PME | Croisia",
+    "description": "Automatiser une PME à Toulouse : tâches à automatiser, choix des outils, méthode en 4 étapes et questions fréquentes. Audit gratuit en visio.",
+    "eyebrow": "Guide local · Toulouse",
+    "h1": "Automatisation à Toulouse : par où commencer pour une PME",
+    "lede": "Devis, relances, reporting, saisie entre logiciels : les tâches répétitives coûtent des heures à la plupart des PME toulousaines. "
+            "Ce guide explique ce qu'on peut automatiser, comment choisir les outils et comment démarrer sans projet lourd.",
+    "points": ["Guide pratique pour dirigeants", "Vos outils actuels conservés", "Audit gratuit en visio"],
+    "blocks": [
+        {"type": "pains", "eyebrow": "Le quotidien", "title": "Les tâches qui prennent le plus de temps",
+         "items": [
+             ("Les devis et factures ressaisis", "Un devis préparé dans un outil, recopié dans le CRM, puis refait pour la facture."),
+             ("Les relances oubliées", "Impayés, devis sans réponse, prospects à rappeler : tout dépend de la mémoire de quelqu'un."),
+             ("Le reporting du lundi", "Des chiffres rassemblés à la main dans plusieurs fichiers, déjà dépassés à l'envoi."),
+             ("Des logiciels qui ne se parlent pas", "Chaque outil fait bien son travail, mais l'information circule mal entre eux."),
+         ]},
+        {"type": "cards", "tint": True, "eyebrow": "Ce qu'on automatise", "title": "Les automatisations les plus demandées à Toulouse",
+         "cols": 3,
+         "items": [
+             {"title": "Devis et factures", "text": "Pré-remplis depuis le CRM, envoyés et archivés sans ressaisie.", "href": "/blog/automatiser-devis-factures/", "more": "Lire le guide"},
+             {"title": "Relances clients", "text": "Un scénario régulier qui s'arrête dès que le client répond ou paie.", "href": "/blog/automatiser-relances-clients/", "more": "Lire le guide"},
+             {"title": "Reporting", "text": "Un tableau de bord alimenté automatiquement, livré chaque semaine.", "href": "/blog/automatiser-reporting/", "more": "Lire le guide"},
+             {"title": "CRM à jour", "text": "Chaque email, chaque devis remonte seul dans la bonne fiche.", "href": "/blog/automatisation-crm/", "more": "Lire le guide"},
+             {"title": "Agents IA", "text": "Un assistant qui répond aux demandes, qualifie et prépare les réponses, sous votre contrôle.", "href": "/agents-ia/", "more": "Découvrir les agents IA"},
+             {"title": "Outils d'automatisation", "text": "Make, n8n ou Zapier : comment choisir selon votre équipe et vos données.", "href": "/blog/make-vs-n8n-vs-zapier/", "more": "Comparer les outils"},
+         ]},
+        {"type": "split", "eyebrow": "Le contexte toulousain", "title": "Une ville où les PME travaillent beaucoup avec des documents et des commandes",
+         "md": "Toulouse concentre une forte activité aéronautique et spatiale, avec un tissu dense de sous-traitants, de bureaux d'études et de PME de services. "
+               "Ces entreprises manipulent beaucoup de devis, de cahiers des charges, de commandes et de relances. C'est là que l'automatisation rend le plus de temps.\n\n"
+               "Le travail se fait à distance, en visio, pour l'audit comme pour la mise en place. Une agence d'automatisation peut vous accompagner de l'audit au suivi.",
+         "bullets": ["Devis et suivi de commandes chez les sous-traitants", "Classement des documents techniques", "Relances et facturation dans les services", "Reporting d'activité sans ressaisie"]},
+        {"type": "split", "tint": True, "reverse": True, "eyebrow": "Choisir ses outils", "title": "Quelle plateforme pour relier vos logiciels ?",
+         "md": "Pour la plupart des PME, deux plateformes couvrent le besoin : **Make** pour une équipe qui veut suivre et modifier ses scénarios, "
+               "**n8n** pour les flux complexes ou les données sensibles, qu'on peut héberger soi-même. Le détail est dans notre [comparatif Make, n8n et Zapier](/blog/make-vs-n8n-vs-zapier/).\n\n"
+               "Le bon choix dépend de vos logiciels actuels : on commence par les vérifier pendant l'audit.",
+         "bullets": ["Pas de migration de vos données", "Vous restez propriétaire des automatisations", "Alertes en cas d'échec d'un scénario"]},
+        {"type": "split", "eyebrow": "Agent IA", "title": "Un agent IA à Toulouse pour les demandes répétitives",
+         "md": "Un agent IA peut répondre aux demandes courantes, qualifier une demande et préparer une réponse. Il transmet à une personne ce qui sort du cadre.",
+         "bullets": ["Réponse aux questions fréquentes", "Qualification de la demande", "Passage de relais à un collaborateur"]},
+        {"type": "steps"},
+        {"type": "links", "tint": True, "eyebrow": "Pour aller plus loin", "title": "Nos pages sur l'automatisation",
+         "slugs": ["automatisation-pme", "ia-pour-pme", "agents-ia", "automatisation-make-n8n", "automatisation-pme-toulouse", "recrutement", "concessions-automobiles", "immobilier"]},
+        {"type": "articles", "segment": "pme", "max": 3, "title": "Guides pratiques pour les PME"},
+        {"type": "faq", "title": "Questions fréquentes sur l'automatisation à Toulouse"},
+    ],
+    "faq": [
+        ("Combien coûte une automatisation pour une PME à Toulouse ?",
+         "Le prix dépend du nombre d'outils à relier et de la complexité des règles. L'audit est gratuit ; le devis est établi chantier par chantier, avec le gain de temps estimé pour chaque ligne. Voir [le prix d'une automatisation](/blog/prix-automatisation/)."),
+        ("Faut-il être à Toulouse pour travailler avec vous ?",
+         "Non. L'audit et le suivi se font en visio. Un rendez-vous sur place à Toulouse peut être étudié selon le projet."),
+        ("Par quelle tâche commencer ?",
+         "Par celle qui revient chaque semaine et qui déplace de l'information d'un outil à un autre : souvent les devis, les factures ou les relances. Un seul chantier court suffit pour mesurer le gain."),
+        ("Quelle différence entre automatisation et IA ?",
+         "L'automatisation exécute des règles fixes. L'IA traite ce qui est flou, comme un email mal formulé ou un document scanné. Les deux se combinent très bien."),
+        ("Faut-il changer nos logiciels ?",
+         "Non. On relie les outils que vous utilisez déjà, et on ne remplace un logiciel que s'il bloque vraiment."),
+    ],
+}
+
+HUBS.append(TOULOUSE_GUIDE)
 
 # Pages locales (villes + index des zones), définies dans cities.py
 from cities import CITY_HUBS  # noqa: E402

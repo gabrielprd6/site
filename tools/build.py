@@ -603,12 +603,26 @@ def page_hero(hub, trail):
 </section>"""
 
 
+def faq_ld(items):
+    """Schéma FAQPage : réponses en texte brut (sans liens ni gras markdown)."""
+    import json
+    def plain_md(a):
+        a = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", a)
+        return re.sub(r"\*\*|\*", "", a)
+    return json.dumps({
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": q,
+                        "acceptedAnswer": {"@type": "Answer", "text": plain_md(a)}} for q, a in items],
+    }, ensure_ascii=False, separators=(",", ":"))
+
+
 def service_ld(hub, path):
     import json
+    area = {"@type": "City", "name": hub["area"]} if hub.get("area") else {"@type": "Country", "name": "France"}
     return json.dumps({
         "@context": "https://schema.org", "@type": "Service", "name": strip_tags(inline(hub["h1"])),
         "description": hub["description"], "url": abs_url(path), "serviceType": hub.get("service_type", hub["nav_label"]),
-        "areaServed": {"@type": "Country", "name": "France"},
+        "areaServed": area,
         "provider": {"@type": "ProfessionalService", "name": "Croisia", "url": SITE + "/"},
     }, ensure_ascii=False, separators=(",", ":"))
 
@@ -625,7 +639,10 @@ def render_hub(hub, form_html):
             b = dict(b, html=form_html)
         blocks.append(render_block(b, hub, i))
     has_form = any(b["type"] == "form" for b in hub["blocks"])
-    page = head(hub["title"], hub["description"], path, jsonld=[service_ld(hub, path), breadcrumb_ld(trail)])
+    jsonld = [service_ld(hub, path), breadcrumb_ld(trail)]
+    if hub.get("faq"):
+        jsonld.append(faq_ld(hub["faq"]))
+    page = head(hub["title"], hub["description"], path, jsonld=jsonld)
     page += header(path)
     page += f'<main id="contenu">\n{page_hero(hub, trail)}\n' + "\n".join(blocks)
     if not has_form:

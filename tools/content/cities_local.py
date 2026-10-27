@@ -17,6 +17,8 @@ EXTRA = {
                 "de devis techniques et de suivi de commandes. Croisia, agence d'automatisation et d'IA, relie vos outils pour que ce travail de fond "
                 "ne repose plus sur la mémoire de vos équipes.",
         "desc": "Agence d'automatisation et d'IA pour PME à Toulouse : sous-traitance aéronautique, bureaux d'études, Labège, Blagnac. Audit gratuit en visio.",
+        "title": "Automatisation PME Toulouse : guide et conseil | Croisia",
+        "h1": "Automatisation à Toulouse pour les PME",
         "h_auto": "Automatisation PME à Toulouse : la sous-traitance et ses documents",
         "h_ia": "IA pour PME à Toulouse : lire, retrouver, résumer",
         "h_agents": "Agent IA à Toulouse : filtrer les demandes techniques",

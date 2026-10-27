@@ -291,10 +291,11 @@ def _city_hub(c):
         "card_title": f"Automatisation PME à {name}",
         "card_text": x["tagline"],
         "service_type": f"Automatisation et IA pour PME à {name}",
-        "title": f"Automatisation PME à {name} : agence IA | Croisia",
+        "area": name,
+        "title": x.get("title", f"Automatisation PME à {name} : agence IA | Croisia"),
         "description": x["desc"],
         "eyebrow": f"Automatisation et IA à {name}",
-        "h1": f"Automatisation PME à {name} : agence IA et consultants",
+        "h1": x.get("h1", f"Automatisation PME à {name} : agence IA et consultants"),
         "lede": x["lede"],
         "cta_title": x["cta_title"],
         "cta_text": x["cta_text"],
@@ -323,3 +324,10 @@ def _city_hub(c):
 
 
 CITY_HUBS = [_city_hub(c) for c in CITIES]
+
+# Toulouse : renvoi vers le guide généraliste (même ville, requêtes générales).
+for _h in CITY_HUBS:
+    if _h["city"] == "toulouse":
+        _h["blocks"].insert(1, {"type": "links", "tint": True, "eyebrow": "Guide complet",
+                                "title": "Tout savoir sur l'automatisation à Toulouse",
+                                "slugs": ["automatisation-toulouse"]})
